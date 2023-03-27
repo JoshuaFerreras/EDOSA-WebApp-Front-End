@@ -21,51 +21,59 @@
         <form class="sign-up" action="#">
           <h2>Sign Up</h2>
           <div class="input-field">
-                          <i class="fa-solid fa-user"></i>
-                          <input type="text" placeholder="Username">
-                      </div>
-                      <div class="input-field">
-                          <i class="fa-solid fa-envelope"></i>
-                          <input type="text" placeholder="Email Address">
-                      </div>
-                      <div class="input-field">
-                          <i class="fas fa-lock"></i>
-                          <input type="password" placeholder="Password" id="up_password">
-                          <i class="fa fa-eye" aria-hidden="true" id="up_eye" onclick="Up_pass()"></i>
-                      </div>
-                      <div class="input-field">
-                          <i class="fa-sharp fa-solid fa-circle-check"></i>
-                          <input type="password" placeholder="Confirm Password" id="Confirm_password">
-                          <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
-                      </div>           
-          <button>Sign Up</button>
+                <i class="fa-solid fa-user"></i>
+                <input type="text" placeholder="Username" v-model="role_id">
+            </div>
+            <div class="input-field">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" placeholder="Email Address" v-model="email">
+            </div>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Password" id="up_password" v-model="password">
+                <i class="fa fa-eye" aria-hidden="true" id="up_eye" onclick="Up_pass()"></i>
+            </div>
+            <div class="input-field">
+                <i class="fa-sharp fa-solid fa-circle-check"></i>
+                <input type="password" placeholder="Confirm Password" id="Confirm_password">
+                <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
+            </div>           
+          <button @click="signUpForm">Sign Up</button>
         </form>
         <form class="sign-in" action="#">
           <h2>Sign In</h2>
           <div class="input-field">
               <i class="fa-solid fa-user"></i>
-              <input type="text" placeholder="Email or Username" name="email">
+              <input type="text" placeholder="Email or Username" name="email" v-model="email">
           </div>
           <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id="in_password">
+              <input type="password" placeholder="Password" id="in_password" v-model="password">
               <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
-          <button>Sign In</button>
+          <button @click="submit">Sign In</button>
           <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
         </form>
       </div>
     </article>
   </template>
   
-  <script>
-    export default {
-      data: () => {
-        return {
-          signUp: false
-        }
-      }
+  <script setup>
+    import { ref } from 'vue';
+    import axios from 'axios';
+    
+    const signUp = ref(false);
+    const email = ref("");
+    const password = ref("");
+
+    const role_id = ref("");
+    const signUpForm = () => {
+      axios.post('http://localhost:8000/api/users', {
+        email: email,
+        password: password,
+        role_id: role_id,
+      });
     }
   </script>
   

@@ -16,17 +16,11 @@ const router = createRouter({
       }
     ]
     },
-
-    // {
-    //   path: '/',
-    //   name: 'user-role',
-    //   component: UserRoleView
-    // },
-    // {
-    //   path: '/',
-    //   name: 'login-register',
-    //   component: LoginRegisterView
-    // },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('../views/HomeView.vue')
+    }
   ]
 })
 
