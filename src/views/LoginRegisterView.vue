@@ -18,7 +18,7 @@
             </div>
           </div>
         </div>
-        <form class="sign-up" action="#">
+        <form class="sign-up" action="#" @submit.prevent="signUpForm">
           <h2>Sign Up</h2>
           <div class="input-field">
                 <i class="fa-solid fa-user"></i>
@@ -38,7 +38,7 @@
                 <input type="password" placeholder="Confirm Password" id="Confirm_password">
                 <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
             </div>           
-          <button @click="signUpForm">Sign Up</button>
+          <button>Sign Up</button>
         </form>
         <form class="sign-in" action="#">
           <h2>Sign In</h2>
@@ -70,9 +70,9 @@
     const role_id = ref("");
     const signUpForm = () => {
       axios.post('http://localhost:8000/api/users', {
-        email: email,
-        password: password,
-        role_id: role_id,
+        email: email.value,
+        password: password.value,
+        role_id: role_id.value,
       });
     }
   </script>
