@@ -19,7 +19,7 @@ import { RouterView } from 'vue-router';
     font-family: "Poppins", sans-serif;
     font-size: 1.6rem;
     color: #222;
-    background: #326ABD;
+    background: white;
     height: 100vh;
     display: flex;
     justify-content: center;
