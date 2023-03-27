@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import LoginRegisterView from '../views/LoginRegisterView.vue'
+// import LoginRegisterView from '../views/LoginRegisterView.vue'
 import UserRoleView from  '../views/UserRoleView.vue'
 
 const router = createRouter({
@@ -9,12 +9,16 @@ const router = createRouter({
     path: '/',
     name: 'user-role',
     component: UserRoleView,
-    children:[
-      {
-        path: 'login',
-        component: LoginRegisterView,
-      }
-    ]
+    // children:[
+    //   {
+    //     path: 'login',
+    //     component: LoginRegisterView,
+    //   }
+    // ]
+    },
+    {
+      path: '/login',
+      component: () => import('../views/LoginRegisterView.vue'),
     },
     {
       path: '/home',
