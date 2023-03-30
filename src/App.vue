@@ -5,23 +5,21 @@ import { RouterView } from 'vue-router';
 
 <template>
   <div id="app">
-    <RouterView />
-  </div>
+    <RouterView /></div>
 </template>
 
-<style scoped>
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+<style>
+*{
+  margin: 0;
+}
   #app {
+  
     font-family: "Poppins", sans-serif;
     font-size: 1.6rem;
     color: #222;
     background: white;
-    height: 100vh;
-    display: flex;
+    height: 100vh; 
+    /* display: flex; */
     justify-content: center;
     align-items: center;
   }
