@@ -3,7 +3,7 @@
       <div class="contents">
       <div class="container" :class="{'sign-up-active' : signUp}"> <!-- isSignUp == true ? 'sign-up-active' : '' -->
         <div class="overlay-container">
-          <button class="back-btn"><i class="fa-solid fa-backward"></i> Go Back</button>
+          <RouterLink to="/user-role"><button class="back-btn"><i class="fa-solid fa-backward"></i> Go Back</button></RouterLink>
           <div class="overlay">
             <div class="overlay-left">
               <h3></h3>
@@ -21,15 +21,7 @@
           </div>
         </div>
         <form class="sign-up" action="#" @submit.prevent="signUpForm">
-          <h2>Sign Up</h2>
-          <!-- <div class="input-field">
-                <i class="fa-solid fa-user"></i>
-                <input type="text" placeholder="Username" v-model="role_id">
-            </div> -->
-            <div class="input-field">
-                <i class="fa-sharp fa-solid fa-user"></i>
-                <input type="text" id="user-role" name="doctor" value="Signing up as Doctor" readonly>
-            </div>            
+          <h2>Sign Up</h2>           
             <div class="input-field">
                 <i class="fa-solid fa-envelope"></i>
                 <input type="text" placeholder="Email Address" v-model="email">
@@ -44,9 +36,6 @@
                 <input type="password" placeholder="Confirm Password" id="Confirm_password">
                 <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
             </div>
-            <label>Proof of Identity:
-              <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-            </label>
           <button @click="signUpForm">Sign Up</button>
         </form>
         <form class="sign-in" action="#">

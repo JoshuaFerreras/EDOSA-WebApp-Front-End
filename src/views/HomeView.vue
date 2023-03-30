@@ -29,7 +29,7 @@
                 <h3>
                     Let’s make Sleep Apnea sufferers Feel Better!
                 </h3>
-                <a href="/login" class="getstarted-btn">Get Started</a>
+                <RouterLink to="/user-role" class="getstarted-btn">Get Started</RouterLink>
             </div>
         </div>
     </section>

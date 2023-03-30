@@ -2,19 +2,25 @@
   <div class="container">
     <header>
     <div class="logo-container"></div>
-    <button><i class="fa-solid fa-backward"></i> Go Back</button>
+    <RouterLink to="/" class="button"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
     </header>
       <div class="contents">
-      <div class="card">
-        <img src="images/role-doctor.jpg" alt="Avatar">
-        <div class="role-name"><h4>I am Doctor</h4>
+      <RouterLink to="/doctor-form">
+        <div class="card">
+          <img src="images/role-doctor.jpg" alt="Avatar">
+          <div class="role-name"><h4>I am Doctor</h4>
+          </div>
         </div>
-      </div>
-      <div class="card">
-        <img src="images/role-patient.jpg" alt="Avatar">
-        <div class="role-name"><h4>I am Patient</h4>
+      </RouterLink>
+
+      <RouterLink to="/patient-form">
+        <div class="card">
+          <img src="images/role-patient.jpg" alt="Avatar">
+          <div class="role-name"><h4>I am Patient</h4>
+          </div>
         </div>
-      </div>
+      </RouterLink>
+
     </div>
   </div>
 </template>
@@ -33,7 +39,7 @@ header{
   align-items: flex-start;
   margin-top: 20px;
 }
-button{
+.button{
   margin-right: 50px;
   border-radius: 40px;
   border: none;
@@ -46,7 +52,7 @@ button{
   cursor: pointer;
   margin-top: 20px;
 }
-button:active{
+.button:active{
   transform: scale(.89);
   border-radius: 40px;
   border: 2px solid white;
