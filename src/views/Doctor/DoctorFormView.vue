@@ -21,7 +21,7 @@
           </div>
         </div>
         <form class="sign-up" action="#" @submit.prevent="signUpForm">
-          <h2>Sign Up</h2>           
+          <h2>Sign Up</h2>          
             <div class="input-field">
                 <i class="fa-solid fa-envelope"></i>
                 <input type="text" placeholder="Email Address" v-model="email">
@@ -33,9 +33,12 @@
             </div>
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-circle-check"></i>
-                <input type="password" placeholder="Confirm Password" id="Confirm_password">
+                <input type="password" placeholder="Confirm Password" id="Confirm_password" v-model="confirm_password">
                 <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
             </div>
+            <label>Proof of Identity:
+              <input type="file" id="file" ref="file" @change="uploadFile"/>
+            </label>
           <button @click="signUpForm">Sign Up</button>
         </form>
         <form class="sign-in" action="#">
@@ -50,7 +53,9 @@
               <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
-          <button @click="submit">Sign In</button>
+          <RouterLink to ="/doctor-dashboard">
+            <button @click="submit">Sign In</button>
+          </RouterLink>
           <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
         </form>
       </div>
@@ -60,25 +65,50 @@
   
   <script setup>
     import { ref } from 'vue';
-    import axios from 'axios';
+    import axios from '../../axios/index.js';
     
     const signUp = ref(false);
     const email = ref("");
+    const confirm_password = ref("");
     const password = ref("");
+    const role_id = 1;
+    const file = ref("");
 
-    const role_id = ref("");
-    const signUpForm = () => {
-      axios.post('http://localhost:8000/api/users', {
-        email: email.value,
-        password: password.value,
-        role_id: role_id.value,
-      });
+    const uploadFile = (event) => {
+        file.value = event.target.files[0];
+    }
+
+    const signUpForm = async () => {
+        const formdata = new FormData();
+        formdata.append('file', file.value);
+        console.log(file.value);
+        // const reader = new FileReader();
+        // reader.readAsDataURL(file.value);
+
+        // reader.onload = async () => {
+        // const encodedFile = reader.result.split(",")[1];
+        //     const data = {
+        //         file: encodedFile,
+
+        //     };
+            await axios.post('/users', {
+            email: email.value,
+            password: password.value,
+            confirm_password: confirm_password.value,
+            role_id: role_id,
+            file: formdata,
+        });
+        // }
+
     }
   </script>
   
 <style lang="scss" scoped>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
   
+*{
+  box-sizing: content-box;
+}
 
 label{
   font-size: 18px;

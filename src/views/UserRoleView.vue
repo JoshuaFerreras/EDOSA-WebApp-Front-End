@@ -51,6 +51,7 @@ header{
   letter-spacing: 1px;
   cursor: pointer;
   margin-top: 20px;
+  text-decoration: none;
 }
 .button:active{
   transform: scale(.89);
@@ -82,7 +83,6 @@ img{
   position: relative;
   width: 100%;
   height: 100%;
-
 }
 .card {
   /* Add shadows to create the "card" effect */
@@ -93,6 +93,7 @@ img{
   margin:  40px;
   background: linear-gradient(-90deg, whitesmoke, #326ABD);
   border-radius: 40px;
+  text-decoration: none;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -111,28 +112,35 @@ img{
 .role-name {
   padding: 2px 16px;
   margin-bottom: 50px;
-  
 }
 
 .role-name h4{
   font-size: 30px;
   text-transform: uppercase;
-  margin-left: auto;
-  margin-right: auto;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+h4{
+  text-decoration: none;
+}
+
 @media (max-width:779px){
 
-.card{
-  width: 100%;
-  height: 100%;
-  flex-direction: row;
+.container{
+  height: max-content;
 }
-.logo-container{
-  display: none;
+.card{
+  width: 90%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+}
+.contents{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 }
 </style>
