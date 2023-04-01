@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-// import LoginRegisterView from '../views/LoginRegisterView.vue'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
@@ -12,16 +11,40 @@ const router = createRouter({
     },
     {
       path: '/user-role',
-      name: 'user-role',
       component: () => import('../views/UserRoleView.vue'),
     },
+
+
+
+
     {
       path: '/doctor-form',
-      component: () => import('../views/DoctorFormView.vue'),
+      component: () => import('../views/Doctor/DoctorFormView.vue'),
     },
     {
+      path: '/doctor-dashboard',
+      component: () => import('../views/Doctor/Doctor-DboardView.vue'),
+    },
+    {
+      path: '/doctor-patient-profile',
+      component: () => import('../views/Doctor/Doctor-PatientViewProfile.vue'),
+    },
+
+
+
+
+
+
+
+
+
+    {
       path: '/patient-form',
-      component: () => import('../views/PatientFormView.vue'),
+      component: () => import('../views/Patient/PatientFormView.vue'),
+    },
+    {
+      path: '/patient-dashboard',
+      component: () => import('../views/Patient/Patient-DboardView.vue'),
     }
   ]
 })

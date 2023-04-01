@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+        <div class="container">
         <div class="sidebar">
             <ul>
                 <li>
@@ -48,10 +48,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="login">
+                    <!-- <a href="login">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <div class="title">Log out</div>
-                    </a>
+                    </a> -->
+                    <RouterLink to="/">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <div class="title">Log out</div>
+                    </RouterLink>
                 </li>
             </ul>
         </div>
@@ -222,14 +226,14 @@
     </div>
 </template>
 
-<style scoped>
+<style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
 
 
 *{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     font-family: "Poppins", sans-serif;
 }
 
@@ -478,14 +482,12 @@ table tbody tr:last-child{
 
 td{
     padding: 9px 5px; 
-    
 }
 
 td i{
     padding: 7px;
     color: #fff;
     border-radius: 50px;
-    margin: 2px;
 }
 
 .recent-appointments table tbody td:last-child{
