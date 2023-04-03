@@ -127,12 +127,25 @@
                                 <td>30 years old</td>
                                 <td>36.3 - Obesesity</td>
                                 <td>
-                                    <!-- <i class="far fa-eye"> View Profile</i> -->
                                     <RouterLink to="/doctor-patient-profile">
                                         <i class="far fa-eye"> View Profile</i>
                                     </RouterLink>
-                                    <!-- <i class="far fa-edit"></i>
-                                    <i class="far fa-trash-alt"></i> -->
+                                    <RouterLink to="/doctor-patient-result">
+                                        <i class="far fa-edit"> Check Result</i>
+                                    </RouterLink>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Juan J. Dela Cruz</td>
+                                <td>55 years old</td>
+                                <td>31 - Obesesity</td>
+                                <td>
+                                    <RouterLink to="/doctor-patient-profile">
+                                        <i class="far fa-eye"> View Profile</i>
+                                    </RouterLink>
+                                    <RouterLink to="/doctor-patient-result">
+                                        <i class="far fa-edit"> Check Result</i>
+                                    </RouterLink>
                                 </td>
                             </tr>
                             <tr>
@@ -468,6 +481,7 @@ table{
 thead td{
     font-weight: 600;
     color: #333;
+    
 }
 
 table tr{

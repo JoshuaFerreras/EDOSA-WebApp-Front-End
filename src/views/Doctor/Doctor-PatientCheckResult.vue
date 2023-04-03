@@ -1,5 +1,5 @@
 
-<template>
+  <template>
     <div class="container">
         <header>
             <div class="patient-photo"><h1></h1></div>
@@ -10,7 +10,7 @@
             </ul>
                 <div class="title-logo"></div>
         </header>
-        <!-- <div class="result-cards">
+        <div class="result-cards">
             <div class="card">
                 <div>Heart Rate</div>
                 <img src="images/heart-impulse.png" alt="Avatar">
@@ -32,22 +32,11 @@
                 <img src="images/bloodpressure-level.png" alt="Avatar">
                 <div class="BP-result">90 mmHg</div>
             </div>
-        </div> -->
-        
-
-        <div class="contents">
-            <div class="view-patient-form">
-
-            </div>
         </div>
-        
-
-
-        
         <footer>
             <div class="buttons">
                 <RouterLink to="/doctor-dashboard" class="button" style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
-                <RouterLink to="/doctor-patient-result" class="button" style="background-color: #11499C; color: white;"> Check Result <i class="fa-solid fa-forward"></i></RouterLink>
+                <RouterLink to="/doctor-dashboard" class="button" style="background-color: #11499C; color: white;">View Result <i class="fa-solid fa-forward"></i></RouterLink>
             </div>
         </footer>
     </div>
@@ -101,34 +90,47 @@ width: 400px;
 margin-left: auto;
 margin-right: 10px;
 }
-
-
-
-.contents{
+.result-cards {
+  min-height: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+.result-cards > div {
+  display: flex; 
+  flex-basis: calc(50% - 40px);  
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 40px;
+}
+.result-cards > div > div {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 300vh;
-  width: 100vw;
-  margin: 20px;
+  flex-direction: row;
 }
-.view-patient-form{
-position: relative;
-width: 70vw;
-height: 100%;
-border-radius: 10px;
+/* .card:hover{
+    background: linear-gradient(45deg, whitesmoke, #326ABD);
+    transform: scale(.9);
+} */
 
-box-shadow: 40px 40px 40px black;
-background: linear-gradient(-45deg, whitesmoke, #11499C);
+.card { 
+    margin: 20px;
+    background: linear-gradient(-90deg, whitesmoke, #326ABD);
+    border-radius: 40px;
+    /* height: 25%; */
+    width: 50%;
+    text-transform: uppercase;
+    box-shadow: 40px 40px 40px 0 rgba(0,0,0,0.9);
+    transition: 0.9s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-
-
-
-
-
-
-
-
+img{
+    position: relative;
+    width: 30%;
+}
 .buttons{
     display: flex;
     justify-content: center;
