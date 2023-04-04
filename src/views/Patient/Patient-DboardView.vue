@@ -1,64 +1,9 @@
+<script setup>
+import Sidebar from '../../components/Sidebar.vue';
+</script>
 <template>
         <div class="container">
-        <div class="sidebar">
-            <ul>
-                <li>
-                        <div class="title"><h1></h1></div>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-th-large"></i>
-                        <div class="title">Dashboard</div>
-                    </a>
-                </li>
-                <!-- <li>
-                    <a href="">
-                        <i class="fas fa-user-md"></i>
-                        <div class="title">My Profile</div>
-                    </a>
-                </li> -->
-                <li>
-                    <a href="">
-                        <i class="fas fa-stethoscope"></i>
-                        <div class="title">Appointments</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa-solid fa-people-group"></i>
-                        <div class="title">Patients</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fa-sharp fa-solid fa-envelope"></i>
-                        <div class="title">Mailbox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-cog"></i>
-                        <div class="title">Settings</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="fas fa-question"></i>
-                        <div class="title">Help</div>
-                    </a>
-                </li>
-                <li>
-                    <!-- <a href="login">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <div class="title">Log out</div>
-                    </a> -->
-                    <RouterLink to="/">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                        <div class="title">Log out</div>
-                    </RouterLink>
-                </li>
-            </ul>
-        </div>
+            <Sidebar/>
         <div class="main">
             <div class="top-bar">
                 <div class="search">
@@ -245,63 +190,6 @@ body{
     position: relative;
     width: 100%;
 }
-
-.sidebar{
-    position: fixed;
-    width: 300px;
-    height: 100%;
-    background: linear-gradient(45deg, #114A9c, whitesmoke);
-    overflow-x: hidden;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
-    z-index: 2;
-}
-
-.sidebar ul li{
-    width: 100%;
-    list-style: none;
-}
-
-.sidebar ul li:hover{
-    /* background: rgb(196, 11, 11); */
-    background: skyblue;
-}
-
-.sidebar ul li:first-child:hover{
-    background: none;
-}
-
-
-.sidebar ul li a{
-    width: 100%;
-    text-decoration: none;
-    color: black;
-    height: 60px;
-    display: flex;
-    align-items: center;
-}
-
-.sidebar ul li a i{
-    min-width: 60px;
-    font-size: 24px;
-    text-align: center;
-}
-
-.sidebar .title{
-    padding: 0 10px;
-    font-size: 20px;
-}
-
-.sidebar h1{
-    background: url(images/edosa-logo2.png) no-repeat center center/cover;
-	position: relative;
-	width: 100%;
-	height: 140px;
-	background-size: contain;
-    transition: 0.3s;
-    align-items: center;
-    border-bottom: 2px solid #114A9c;
-}
-
 
 .main {
     position: absolute;
