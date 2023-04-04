@@ -13,10 +13,6 @@ const router = createRouter({
       path: '/user-role',
       component: () => import('../views/UserRoleView.vue'),
     },
-
-
-
-
     {
       path: '/doctor-form',
       component: () => import('../views/Doctor/DoctorFormView.vue'),
@@ -33,15 +29,6 @@ const router = createRouter({
       path: '/doctor-patient-result',
       component: () => import('../views/Doctor/Doctor-PatientCheckResult.vue'),
     },
-
-
-
-
-
-
-
-
-
     {
       path: '/patient-form',
       component: () => import('../views/Patient/PatientFormView.vue'),

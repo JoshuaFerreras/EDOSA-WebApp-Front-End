@@ -1,20 +1,20 @@
 <template>
     <article>
       <div class="contents">
-      <div class="container" :class="{'sign-up-active' : signUp}"> <!-- isSignUp == true ? 'sign-up-active' : '' -->
+      <div class="container" :class="{'sign-up-active' : isSignUp}">
         <div class="overlay-container">
           <RouterLink to="/user-role"><button class="back-btn"><i class="fa-solid fa-backward"></i> Go Back</button></RouterLink>
           <div class="overlay">
             <div class="overlay-left">
               <h3></h3>
               <p>Already have an account?</p>
-              <button class="invert" id="signIn" @click="signUp = !signUp">Sign In</button>
+              <button class="invert" id="signIn" @click="signInBtn">Sign In</button>
               <h5></h5>
             </div>
             <div class="overlay-right">
               <h3></h3>
               <p>Create your account now!</p>
-              <button class="invert" id="signUp" @click="signUp = !signUp">Sign Up</button>
+              <button class="invert" id="signUp" @click="signUpBtn">Sign Up</button>
               <h4></h4>
               
             </div>
@@ -33,12 +33,12 @@
             </div>
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-circle-check"></i>
-                <input type="password" placeholder="Confirm Password" id="Confirm_password">
+                <input type="password" placeholder="Confirm Password" id="Confirm_password" v-model="confirm_password">
                 <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
             </div>
-          <button @click="signUpForm">Sign Up</button>
+          <button>Sign Up</button>
         </form>
-        <form class="sign-in" action="#">
+        <form class="sign-in" action="#" @submit.prevent="signInForm">
           <h2>Sign In</h2>
           <div class="input-field">
               <i class="fa-solid fa-envelope"></i>
@@ -50,9 +50,7 @@
               <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
-          <RouterLink to="/patient-dashboard">
-            <button @click="submit">Sign In</button>
-          </RouterLink>
+          <button @click="submit">Sign In</button>
           <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
         </form>
       </div>
@@ -63,18 +61,50 @@
   <script setup>
     import { ref } from 'vue';
     import axios from 'axios';
-    
-    const signUp = ref(false);
+    import { useRouter } from 'vue-router';
+  
+    const router = useRouter();
+
+    const isSignUp = ref(false);
     const email = ref("");
     const password = ref("");
+    const confirm_password = ref("");
+    const role_id = 2;
 
-    const role_id = ref("");
+    const signInBtn = () => {
+      isSignUp.value = false;
+    };
+
+    const signUpBtn = () => {
+      isSignUp.value = true;
+    };
+
     const signUpForm = () => {
-      axios.post('http://localhost:8000/api/users', {
+      axios.post('/users', {
         email: email.value,
         password: password.value,
-        role_id: role_id.value,
+        confirm_password: confirm_password.value,
+        role_id: role_id,
+      }).then(() => {
+        isSignUp.value = false;
+        email.value = "";
+        password.value = "";
+        confirm_password.value = "";
       });
+    }
+
+    const getToken = async () => {
+      await axios.get('/sanctum/csrf-cookie');
+    }
+
+    const signInForm = async () => {
+      getToken;
+      await axios.post('/login', {
+        email: email.value,
+        password: password.value
+      }).then(() => {
+        router.push('/patient-dashboard');
+      })
     }
   </script>
   

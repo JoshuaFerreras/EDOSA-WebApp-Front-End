@@ -1,12 +1,19 @@
-import { ref, computed } from 'vue'
-import { defineStore } from 'pinia'
+import { ref, computed } from 'vue';
+import { defineStore } from 'pinia';
+import axios from 'axios';
 
-export const useCounterStore = defineStore('login', () => {
-  const count = ref(0)
-  const doubleCount = computed(() => count.value * 2)
-  function increment() {
-    count.value++
+export const useAuthStore = defineStore('auth', () => {
+  const login_form = ref({
+    email: '',
+    password: ''
+  });
+
+  const login = (login_form) => {
+    axios.post('/login' , login_form)
   }
 
-  return { count, doubleCount, increment }
+  return {
+    login,
+    login_form,
+  };
 })
