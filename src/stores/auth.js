@@ -4,12 +4,13 @@ import axios from 'axios';
 
 export const useAuthStore = defineStore('auth', () => {
   const login_form = ref({
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   });
-
   const login = (login_form) => {
-    axios.post('/login' , login_form)
+    const promise = axios.post('/login' , login_form);
+
+    return promise;
   }
 
   return {
