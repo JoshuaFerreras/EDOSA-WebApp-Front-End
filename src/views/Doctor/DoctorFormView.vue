@@ -45,11 +45,11 @@
           <h2>Sign In</h2>
           <div class="input-field">
               <i class="fa-solid fa-envelope"></i>
-              <input type="text" placeholder="Email Address" name="email" v-model="email">
+              <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
           </div>
           <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id="in_password" v-model="password">
+              <input type="password" placeholder="Password" id="in_password" v-model="login_form.password">
               <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
@@ -68,6 +68,8 @@
     import { useRouter } from 'vue-router';
 
     const router = useRouter();
+    const authStore = useAuthStore();
+    const login_form = authStore.login_form;
 
     const isSignUp = ref(false);
     const email = ref("");
@@ -110,6 +112,10 @@
 
     const signInForm = async () => {
       getToken;
+      // await authStore.login(login_form).then(() => {
+      //   router.push('/doctor-dashboard');
+      // });
+
       await axios.post('/login', {
         email: email.value,
         password: password.value
