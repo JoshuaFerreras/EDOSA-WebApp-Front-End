@@ -49,7 +49,7 @@
           </div>
           <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id="in_password" v-model="login_form.password">
+              <input type="password" placeholder="Password" id="in_password" name="password" v-model="login_form.password">
               <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
@@ -64,12 +64,13 @@
   <script setup>
     import { ref } from 'vue';
     import axios from 'axios';
-    import { useAuthStore } from '../../stores/auth';
     import { useRouter } from 'vue-router';
 
     const router = useRouter();
-    const authStore = useAuthStore();
-    const login_form = authStore.login_form;
+    const login_form = ref({
+      email: "",
+      password: "",
+    });
 
     const isSignUp = ref(false);
     const email = ref("");
@@ -89,21 +90,20 @@
     const onChange = (event) => {
         file.value = event.target.files[0];
     }
-
     const signUpForm = async () => {
-        const formdata = new FormData();
-        formdata.append('file', file.value);
-        formdata.append('email', email.value);
-        formdata.append('password', password.value);
-        formdata.append('confirm_password', confirm_password.value);
-        formdata.append('role_id', role_id);
-        await axios.post('/users', formdata).then(() => {
-          isSignUp.value = false;
-          email.value = "";
-          password.value = "";
-          confirm_password.value = "";
-          file.value = null;
-        });
+      const formdata = new FormData();
+      formdata.append('file', file.value);
+      formdata.append('email', email.value);
+      formdata.append('password', password.value);
+      formdata.append('confirm_password', confirm_password.value);
+      formdata.append('role_id', role_id);
+      await axios.post('/users', formdata).then(() => {
+        isSignUp.value = false;
+        email.value = "";
+        password.value = "";
+        confirm_password.value = "";
+        file.value = null;
+      });
     }
 
     const getToken = async () => {
@@ -112,16 +112,11 @@
 
     const signInForm = async () => {
       getToken;
-      // await authStore.login(login_form).then(() => {
-      //   router.push('/doctor-dashboard');
-      // });
-
-      await axios.post('/login', {
-        email: email.value,
-        password: password.value
-      }).then(() => {
+      await axios.post('/login', login_form.value).then(() => {
         router.push('/doctor-dashboard');
-      })
+      }).catch(() => {
+        router.push('/patient-form');
+      });
     }
   </script>
   

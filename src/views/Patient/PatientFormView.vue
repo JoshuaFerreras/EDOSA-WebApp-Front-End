@@ -24,16 +24,16 @@
           <h2>Sign Up</h2>           
             <div class="input-field">
                 <i class="fa-solid fa-envelope"></i>
-                <input type="text" placeholder="Email Address" v-model="email">
+                <input type="text" placeholder="Email Address" v-model="register_form.email">
             </div>
             <div class="input-field">
                 <i class="fas fa-lock"></i>
-                <input type="password" placeholder="Password" id="up_password" v-model="password">
+                <input type="password" placeholder="Password" id="up_password" v-model="register_form.password">
                 <i class="fa fa-eye" aria-hidden="true" id="up_eye" onclick="Up_pass()"></i>
             </div>
             <div class="input-field">
                 <i class="fa-sharp fa-solid fa-circle-check"></i>
-                <input type="password" placeholder="Confirm Password" id="Confirm_password" v-model="confirm_password">
+                <input type="password" placeholder="Confirm Password" id="Confirm_password" v-model="register_form.confirm_password">
                 <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
             </div>
           <button>Sign Up</button>
@@ -42,11 +42,11 @@
           <h2>Sign In</h2>
           <div class="input-field">
               <i class="fa-solid fa-envelope"></i>
-              <input type="text" placeholder="Email Address" name="email" v-model="email">
+              <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
           </div>
           <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id="in_password" v-model="password">
+              <input type="password" placeholder="Password" id="in_password" v-model="login_form.password">
               <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
@@ -66,10 +66,16 @@
     const router = useRouter();
 
     const isSignUp = ref(false);
-    const email = ref("");
-    const password = ref("");
-    const confirm_password = ref("");
-    const role_id = 2;
+    const login_form = ref({
+      email: "",
+      password: "",
+    });
+    const register_form = ref({
+      email: "",
+      password: "",
+      confirm_password: "",
+      role_id: 2
+    });
 
     const signInBtn = () => {
       isSignUp.value = false;
@@ -79,17 +85,12 @@
       isSignUp.value = true;
     };
 
-    const signUpForm = () => {
-      axios.post('/users', {
-        email: email.value,
-        password: password.value,
-        confirm_password: confirm_password.value,
-        role_id: role_id,
-      }).then(() => {
+    const signUpForm = async () => {
+      axios.post('/users', register_form.value).then(() => {
         isSignUp.value = false;
-        email.value = "";
-        password.value = "";
-        confirm_password.value = "";
+        register_form.value.email = "";
+        register_form.value.password = "";
+        register_form.value.confirm_password = "";
       });
     }
 
@@ -99,10 +100,7 @@
 
     const signInForm = async () => {
       getToken;
-      await axios.post('/login', {
-        email: email.value,
-        password: password.value
-      }).then(() => {
+      await axios.post('/login', login_form.value).then(() => {
         router.push('/patient-dashboard');
       })
     }
