@@ -109,6 +109,7 @@
             <div class="buttons">
                 <RouterLink to="/doctor-dashboard" class="button" style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
                 <!-- <RouterLink to="" class="button" style="background-color: #11499C; color: white;" type="submit" @click.prevent="submitForm"> Save Changes <i class="fa-solid fa-forward"></i></RouterLink> -->
+                <button type="submit" @click.prevent="submitForm" style="background-color: red; color: white;" class="button">Edit Profile <i class="fa-solid fa-pen-to-square"></i></button>
                 <button type="submit" @click.prevent="submitForm" style="background-color: #11499C; color: white;" class="button">Save Changes <i class="fa-solid fa-check"></i></button>
             </div>
         </footer>
@@ -173,7 +174,7 @@ margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 160vh;
+  height: 180vh;
   width: 100vw;
 }
 .view-patient-form{
