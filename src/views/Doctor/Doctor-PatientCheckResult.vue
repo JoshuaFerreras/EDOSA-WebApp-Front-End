@@ -24,19 +24,19 @@
             </div>
             <div class="card">
                 <div>AHI Score</div>
-                <img src="images/AHI-Score.png" alt="Avatar" style="background-size: contain;" >
+                <img src="images/AHI-Score.png" alt="Avatar">
                 <div class="AHI-result">31 Severe</div>
             </div>
             <div class="card">
-                <div>Blood Pressure Level</div>
-                <img src="images/bloodpressure-level.png" alt="Avatar">
-                <div class="BP-result">90 mmHg</div>
+                <div>Airflow Level</div>
+                <img src="images/airflow.png" alt="Avatar">
+                <div class="BP-result">30 cfm</div>
             </div>
         </div>
         <footer>
             <div class="buttons">
                 <RouterLink to="/doctor-dashboard" class="button" style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
-                <RouterLink to="/doctor-dashboard" class="button" style="background-color: #11499C; color: white;">View Result <i class="fa-solid fa-forward"></i></RouterLink>
+                <RouterLink to="/doctor-pdf-viewer" class="button" style="background-color: #11499C; color: white;">View Result <i class="fa-solid fa-forward"></i></RouterLink>
             </div>
         </footer>
     </div>
@@ -126,6 +126,7 @@ margin-right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 img{
     position: relative;

@@ -27,6 +27,11 @@
 
 <style scoped>
 
+a:-webkit-any-link{
+  text-decoration: none;
+  color: #11499C;
+}
+
 .container{
   position: absolute;
   height: 100%;
@@ -88,6 +93,7 @@ img{
   /* Add shadows to create the "card" effect */
   /* height: 60vh;
   width: 50vw; */
+  position: relative;
   box-shadow: 40px 40px 40px 0 rgba(0,0,0,0.9);
   transition: 0.9s;
   margin:  40px;
@@ -112,6 +118,7 @@ img{
 .role-name {
   padding: 2px 16px;
   margin-bottom: 50px;
+  text-decoration: none;
 }
 
 .role-name h4{
@@ -120,11 +127,13 @@ img{
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-h4{
   text-decoration: none;
 }
+
+
+
+/* Responsive */
+
 
 @media (max-width:779px){
 

@@ -54,6 +54,15 @@ import Sidebar from '../../components/Sidebar.vue';
                     </div>
                 </div>
             </div>
+            <header>
+                <div class="welcome-form">
+                    <div class="welcome-banner">
+                        <h1>Welcome, Dr. John Doe</h1>
+                        <h2>Have a nice day!</h2>
+                    </div>
+
+                </div>
+            </header>
             <div class="tables">
                 <div class="recent-appointments">
                     <div class="heading">
@@ -86,15 +95,15 @@ import Sidebar from '../../components/Sidebar.vue';
                                 <td>55 years old</td>
                                 <td>31 - Obesesity</td>
                                 <td>
-                                    <RouterLink to="/doctor-patient-profile">
+                                    <RouterLink to="/patient-appointment">
                                         <i class="far fa-eye"> View Profile</i>
                                     </RouterLink>
-                                    <RouterLink to="/doctor-patient-result">
+                                    <RouterLink to="/patient-myprofile">
                                         <i class="far fa-edit"> Check Result</i>
                                     </RouterLink>
                                 </td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <td>Jane Doe</td>
                                 <td>Pending Result</td>
                                 <td>November 10, 2022</td>
@@ -123,7 +132,7 @@ import Sidebar from '../../components/Sidebar.vue';
                                     <i class="far fa-edit"></i>
                                     <i class="far fa-trash-alt"></i>
                                 </td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -274,7 +283,7 @@ img {
 .cards{
     margin-top: 60px;
     width: 100%;
-    padding: 35px 20px;
+    padding: 20px 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
@@ -305,6 +314,31 @@ img {
     font-size: 45px;
 }
 
+.card-img{
+    position: relative;                                                                                                                                                                                                      align-items: center;
+    width: 100%;
+}
+
+.welcome-form{
+    background: linear-gradient(312deg, whitesmoke, #326ABD, #114A9c);
+    height: 20vh;
+    width: 98%;
+    border-radius: 40px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
+}
+
+
+.welcome-banner{
+    position: relative;
+    font-size: 1.5rem;
+    color: white;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+
 .tables{
     width: 100%;
     display: grid;
@@ -323,6 +357,7 @@ img {
 }
 
 .recent-appointments{
+    position:relative;
     min-height: 350px;
     background: whitesmoke;
     padding: 20px;
@@ -349,6 +384,7 @@ img {
     text-decoration: none;
     text-align: center;
     color: whitesmoke;
+    font-size: 1.5rem;
     border-radius: 50px;
 }
 .btn:active{
@@ -419,7 +455,7 @@ td i{
 
 /* Responsive */
 
-@media(max-width:1090px){
+@media(max-width:1370px){
     .sidebar{
         width: 60px;
     }
@@ -431,7 +467,6 @@ td i{
         width: calc(100% - 60px);
     }
     .sidebar h1{
-        background: url(images/edosa-logo3.png) no-repeat center center/cover;
         position: relative;
         width: 100%;
         height: 100px;
@@ -440,8 +475,11 @@ td i{
         align-items: center;
         border-bottom: 2px solid #114A9c;
     }
+    .btn{
+        font-size: 1.3rem;
+    }
 }
-@media(max-width:860px){
+@media(max-width:1060px){
     .cards{
         grid-template-columns: repeat(2,1fr);
     }
@@ -449,7 +487,7 @@ td i{
         grid-template-columns: 1fr;
     }
 }
-@media(max-width:530px){
+@media(max-width:630px){
     .cards{
         grid-template-columns: 1fr;
     }

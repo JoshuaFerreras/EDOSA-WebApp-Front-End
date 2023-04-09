@@ -6,7 +6,7 @@
             <ul>
                 <div class="patient-name"><h1>Marie Alexis Miravite</h1></div>
                 <div class="patient-age"><h2>30 years old</h2></div>
-                <div class="patient-bmi"><h3>36.3-Obesity</h3></div>
+                <div class="patient-bmi"><h3>31-Severe</h3></div>
             </ul>
                 <div class="title-logo"></div>
         </header>
@@ -37,7 +37,47 @@
 
         <div class="contents">
             <div class="view-patient-form">
-
+                <tbody>
+                    <h4>
+                        <td>Account Number: </td>
+                    </h4>
+                    <h4>
+                        <td>Gender: </td>
+                    </h4>
+                    <h4>
+                        <td>Height(cm): </td>
+                    </h4>
+                    <h4>
+                        <td>Weight(kg): </td>
+                    </h4>
+                    <h4>
+                        <td>BMI: </td>
+                    </h4>
+                    <h4>
+                        <td>Risk: </td>
+                    </h4>
+                    <h4>
+                        <td>Birthdate: </td>
+                    </h4>
+                    <h4>
+                        <td>Address: </td>
+                    </h4>
+                    <h4>
+                        <td>Civil Status: </td>
+                    </h4>
+                    <h4>
+                        <td>Email Address: </td>
+                    </h4>
+                    <h4>
+                        <td>Mobile number: </td>
+                    </h4>
+                    <h4>
+                        <td>Emergency Contact Person: </td>
+                    </h4>
+                    <h4>
+                        <td>Religion: </td>
+                    </h4>
+                </tbody>
             </div>
         </div>
         
@@ -65,7 +105,6 @@
   position: absolute;
   height: 100%;
   width: 100%;
-  background: whitesmoke;
 }
 
 header{
@@ -105,29 +144,22 @@ margin-right: 10px;
 
 
 .contents{
+  position: relative;  
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300vh;
+  height: 80%;
   width: 100vw;
-  margin: 20px;
 }
 .view-patient-form{
 position: relative;
 width: 70vw;
-height: 100%;
+height: 90%;
 border-radius: 10px;
-
-box-shadow: 40px 40px 40px black;
-background: linear-gradient(-45deg, whitesmoke, #11499C);
+padding: 20px;
+box-shadow: 10px 10px 40px black;
+background: white;
 }
-
-
-
-
-
-
-
 
 .buttons{
     display: flex;
@@ -136,6 +168,7 @@ background: linear-gradient(-45deg, whitesmoke, #11499C);
     margin-top: 10px;
 
 }
+
 .button{
   margin-right: 50px;
   border-radius: 10px;
@@ -145,7 +178,7 @@ background: linear-gradient(-45deg, whitesmoke, #11499C);
   padding: 10px 20px;
   letter-spacing: 1px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-bottom: 20px;
   text-decoration: none;
 }
 
@@ -196,6 +229,9 @@ h2{
 }
 h3{
     font-size: 20px;
+}
+h4{
+    font-size: 60px;
 }
 .title-logo{
     width: 200px;
