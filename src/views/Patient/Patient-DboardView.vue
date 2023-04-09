@@ -18,58 +18,66 @@ import Sidebar from '../../components/Sidebar.vue';
             <div class="cards">
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">67</div>
-                        <div class="card-name">Appointments</div>
+                        <div class="number">95</div>
+                        <div class="card-name">Heart Rate</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fas fa-briefcase-medical"></i>
+                        <img src="images/heart-impulse.png" alt="Avatar" class="card-img">
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">110</div>
-                        <div class="card-name">New Patients</div>
+                        <div class="number">85.1%</div>
+                        <div class="card-name">Oxygen Level</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fa-solid fa-bed"></i>
+                        <img src="images/oxygen-level.png" alt="Avatar" class="card-img">
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content">
-                        <div class="number">84</div>
-                        <div class="card-name">Pending Tests</div>
+                        <div class="number">31</div>
+                        <div class="card-name">AHI Score</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fa-solid fa-hourglass"></i>
+                        <img src="images/AHI-Score.png" alt="Avatar" style="width: 70%; margin-left: 50px;"  class="card-img">
                     </div>
                 </div>
                 <div class="card">
                     <div class="card-content">
                         <div class="number">30</div>
-                        <div class="card-name">Test Results</div>
+                        <div class="card-name">Air flow</div>
                     </div>
                     <div class="icon-box">
-                        <i class="fa-solid fa-file-circle-check"></i>
+                        <img src="images/airflow.png" alt="Avatar" style="width: 70%; margin-left: 50px;" class="card-img">
                     </div>
                 </div>
             </div>
+            <header>
+                <div class="welcome-form">
+                    <div class="welcome-banner">
+                        <h1>Welcome, Marie Alexis Miravite</h1>
+                        <h2>Have a nice day!</h2>
+                    </div>
+                </div>
+            </header>
             <div class="tables">
                 <div class="recent-appointments">
                     <div class="heading">
-                        <h2>Recent Appointments</h2>
+                        <h2> My Recent Appointments</h2>
                         <a href="" class="btn">View All</a>
                     </div>
                     <table class="appointments">
                         <thead>
-                            <td>Name</td>
-                            <td>Condition</td>
-                            <td>Date</td>
+                            <td>Doctor's Name</td>
+                            <td>Status</td>
+                            <td>Date of Appointment</td>
                             <td>Actions</td>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>John Doe</td>
-                                <td>Hypopnea</td>
+                                <td>Dr. John Doe</td>
+                                <td>Settled</td>
                                 <td>October 16, 2022</td>
                                 <td>
                                     <i class="far fa-eye"></i>
@@ -78,8 +86,8 @@ import Sidebar from '../../components/Sidebar.vue';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Jane Doe</td>
-                                <td>Pending Result</td>
+                                <td>Dra. Jane Doe</td>
+                                <td>Pending</td>
                                 <td>November 10, 2022</td>
                                 <td>
                                     <i class="far fa-eye"></i>
@@ -88,8 +96,8 @@ import Sidebar from '../../components/Sidebar.vue';
                                 </td>
                             </tr>
                             <tr>
-                                <td>James Doe</td>
-                                <td>Pending Result</td>
+                                <td>Dr. James Doe</td>
+                                <td>Pending</td>
                                 <td>November 16, 2022</td>
                                 <td>
                                     <i class="far fa-eye"></i>
@@ -98,8 +106,8 @@ import Sidebar from '../../components/Sidebar.vue';
                                 </td>
                             </tr>
                             <tr>
-                                <td>Jenny Doe</td>
-                                <td>Apnea</td>
+                                <td>Dra. Jenny Doe</td>
+                                <td>Settled</td>
                                 <td>December 06, 2022</td>
                                 <td>
                                     <i class="far fa-eye"></i>
@@ -178,7 +186,7 @@ import Sidebar from '../../components/Sidebar.vue';
 *{
     margin: 0;
     padding: 0;
-    /* box-sizing: border-box; */
+    box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
@@ -257,13 +265,17 @@ img {
 .cards{
     margin-top: 60px;
     width: 100%;
-    padding: 35px 20px;
+    padding: 20px 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
+    /* grid-template-columns: 200px 200px; */
+    grid-row: auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    
 }
 
-.cards .card{
+.card{
     background: linear-gradient(-50deg, whitesmoke, #114A9c);
     padding: 20px;
     display: flex;
@@ -288,6 +300,40 @@ img {
     font-size: 45px;
 }
 
+.card-img{
+    position: relative;                                                                                                                                                                                                      align-items: center;
+    width: 100%;
+}
+
+.welcome-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(312deg, whitesmoke, #326ABD, #114A9c);
+    height: 20vh;
+    width: 98%;
+    border-radius: 40px;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
+}
+.welcome-banner{
+    position: relative;
+    font-size: 1.5rem;
+    color: white;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+.welcome-banner img{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    object-fit: contain;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
 .tables{
     width: 100%;
     display: grid;
@@ -306,6 +352,8 @@ img {
 }
 
 .recent-appointments{
+    position: relative;
+    /* margin-top: 90px; */
     min-height: 350px;
     background: whitesmoke;
     padding: 20px;
@@ -313,6 +361,7 @@ img {
 }
 
 .available-doctor{
+    /* margin-top: 90px; */
     min-height: 350px;
     background: whitesmoke;
     padding: 20px;
@@ -332,6 +381,7 @@ img {
     text-decoration: none;
     text-align: center;
     color: whitesmoke;
+    font-size: 1.5rem;
     border-radius: 50px;
 }
 .btn:active{
@@ -374,6 +424,7 @@ td{
 
 td i{
     padding: 7px;
+    margin: 2px;
     color: #fff;
     border-radius: 50px;
 }
@@ -398,7 +449,7 @@ td i{
 
 /* Responsive */
 
-@media(max-width:1090px){
+@media(max-width:1370px){
     .sidebar{
         width: 60px;
     }
@@ -420,7 +471,7 @@ td i{
         border-bottom: 2px solid #114A9c;
     }
 }
-@media(max-width:860px){
+@media(max-width:1060px){
     .cards{
         grid-template-columns: repeat(2,1fr);
     }
@@ -428,7 +479,7 @@ td i{
         grid-template-columns: 1fr;
     }
 }
-@media(max-width:530px){
+@media(max-width:630px){
     .cards{
         grid-template-columns: 1fr;
     }

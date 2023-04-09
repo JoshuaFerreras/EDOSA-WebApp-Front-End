@@ -9,6 +9,9 @@ const logout = async() => {
         router.push('/');
     });
 };
+
+
+
 </script>
 
 <template>
@@ -88,6 +91,7 @@ const logout = async() => {
 .sidebar ul li:hover{
     /* background: rgb(196, 11, 11); */
     background: skyblue;
+    cursor: pointer;
 }
 
 .sidebar ul li:first-child:hover{
@@ -124,5 +128,63 @@ const logout = async() => {
     transition: 0.3s;
     align-items: center;
     border-bottom: 2px solid #114A9c;
+}
+
+/* Responsive */
+
+@media(max-width:1370px){
+    .sidebar{
+        width: 60px;
+    }
+    .main{
+        width: calc(100% - 60px);
+        left: 60px 
+    }
+    .top-bar{
+        width: calc(100% - 60px);
+    }
+    .sidebar h1{
+        background: url(images/edosa-logo3.png) no-repeat center center/cover;
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background-size: contain;
+        transition: 0.3s;
+        align-items: center;
+        border-bottom: 2px solid #114A9c;
+    }
+}
+@media(max-width:860px){
+    .cards{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .tables{
+        grid-template-columns: 1fr;
+    }
+}
+@media(max-width:530px){
+    .cards{
+        grid-template-columns: 1fr;
+    }
+    .recent-appointments td:nth-child(3){
+        display: none;
+    }
+}
+@media(max-width:420px){
+    .recent-appointments, .available-doctor{
+        font-size: 70%;
+        padding: 10px;
+        min-height: 200px;
+    }
+    .cards, .tables{
+        padding: 10px;
+    }
+    .search input{
+        padding: 0 10px;
+    }
+    .user{
+        width: 40px;
+        height: 40px;
+    }
 }
 </style>
