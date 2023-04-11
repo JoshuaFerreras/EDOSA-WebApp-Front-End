@@ -1,5 +1,19 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 import Sidebar from '../../components/Sidebar.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const user = ref(null);
+
+const editProfile = () => {
+    router.push('/profile');
+}
+
+onMounted(async () => {
+  const data = await axios.get('/me');
+  user.value = data.data.data;
+});
 </script>
 
 <template>
@@ -57,10 +71,15 @@ import Sidebar from '../../components/Sidebar.vue';
             <header>
                 <div class="welcome-form">
                     <div class="welcome-banner">
-                        <h1>Welcome, Dr. John Doe</h1>
-                        <h2>Have a nice day!</h2>
+                        <div v-if="user?.info.first_name != null">
+                            <h1>Welcome, {{ user?.info.last_name }}</h1>
+                            <h2>Have a nice day!</h2>
+                        </div>
+                        <div v-else>
+                            <h1>Welcome, <a @click="editProfile" class="edit-profile">Edit Profile</a></h1>
+                            <h2>Have a nice day!</h2>
+                        </div>
                     </div>
-
                 </div>
             </header>
             <div class="tables">
@@ -511,5 +530,9 @@ td i{
         width: 40px;
         height: 40px;
     }
+}
+
+.edit-profile {
+    color:#63b463
 }
 </style>

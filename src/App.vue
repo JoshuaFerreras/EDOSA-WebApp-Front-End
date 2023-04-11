@@ -1,14 +1,5 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 import { RouterView } from 'vue-router';
-import axios from 'axios';
-
-const user = ref();
-
-onMounted(async () => {
-  const data = await axios.get("/me");
-  user.value = data.data;
-});
 </script>
 
 
