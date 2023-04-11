@@ -1,181 +1,202 @@
 <script setup>
+import { onMounted, ref } from 'vue';
 import Sidebar from '../../components/Sidebar.vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const user = ref(null);
+
+const editProfile = () => {
+    router.push('/profile');
+}
+
+onMounted(async () => {
+  const data = await axios.get('/me');
+  user.value = data.data.data;
+});
 </script>
 <template>
         <div class="container">
             <Sidebar/>
-        <div class="main">
-            <div class="top-bar">
-                <div class="search">
-                    <input type="text" name="search" placeholder="Search here">
-                    <label for="search"><i class="fas fa-search"></i></label>
+            <div class="main">
+                <div class="top-bar">
+                    <div class="search">
+                        <input type="text" name="search" placeholder="Search here">
+                        <label for="search"><i class="fas fa-search"></i></label>
+                    </div>
+                    <i class="fas fa-bell"></i>
+                    <div class="user">
+                        <img src="images/doctor1.2.jpg" alt="">
+                    </div>
                 </div>
-                <i class="fas fa-bell"></i>
-                <div class="user">
-                    <img src="images/doctor1.2.jpg" alt="">
+                <div class="cards">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">95</div>
+                            <div class="card-name">Heart Rate</div>
+                        </div>
+                        <div class="icon-box">
+                            <img src="images/heart-impulse.png" alt="Avatar" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">85.1%</div>
+                            <div class="card-name">Oxygen Level</div>
+                        </div>
+                        <div class="icon-box">
+                            <img src="images/oxygen-level.png" alt="Avatar" class="card-img">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">31</div>
+                            <div class="card-name">AHI Score</div>
+                        </div>
+                        <div class="icon-box">
+                            <img src="images/AHI-Score.png" alt="Avatar" style="width: 70%; margin-left: 50px;"  class="card-img">
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number">30</div>
+                            <div class="card-name">Air flow</div>
+                        </div>
+                        <div class="icon-box">
+                            <img src="images/airflow.png" alt="Avatar" style="width: 70%; margin-left: 50px;" class="card-img">
+                        </div>
+                    </div>
+                </div>
+                <header>
+                    <div class="welcome-form">
+                        <div class="welcome-banner">
+                            <div v-if="user?.info.first_name != null">
+                                <h1>Welcome, {{ user?.info.first_name }} {{ user?.info.last_name }}</h1>
+                                <h2>Have a nice day!</h2>
+                            </div>
+                            <div v-else>
+                                <h1>Welcome, <a @click="editProfile" class="edit-profile">Edit Profile</a></h1>
+                                <h2>Have a nice day!</h2>
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                <div class="tables">
+                    <div class="recent-appointments">
+                        <div class="heading">
+                            <h2> My Recent Appointments</h2>
+                            <a href="" class="btn">View All</a>
+                        </div>
+                        <table class="appointments">
+                            <thead>
+                                <td>Doctor's Name</td>
+                                <td>Status</td>
+                                <td>Date of Appointment</td>
+                                <td>Actions</td>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Dr. John Doe</td>
+                                    <td>Settled</td>
+                                    <td>October 16, 2022</td>
+                                    <td>
+                                        <i class="far fa-eye"></i>
+                                        <i class="far fa-edit"></i>
+                                        <i class="far fa-trash-alt"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dra. Jane Doe</td>
+                                    <td>Pending</td>
+                                    <td>November 10, 2022</td>
+                                    <td>
+                                        <i class="far fa-eye"></i>
+                                        <i class="far fa-edit"></i>
+                                        <i class="far fa-trash-alt"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dr. James Doe</td>
+                                    <td>Pending</td>
+                                    <td>November 16, 2022</td>
+                                    <td>
+                                        <i class="far fa-eye"></i>
+                                        <i class="far fa-edit"></i>
+                                        <i class="far fa-trash-alt"></i>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Dra. Jenny Doe</td>
+                                    <td>Settled</td>
+                                    <td>December 06, 2022</td>
+                                    <td>
+                                        <i class="far fa-eye"></i>
+                                        <i class="far fa-edit"></i>
+                                        <i class="far fa-trash-alt"></i>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="available-doctor">
+                        <div class="heading">
+                            <h2>Available Doctors</h2>
+                            <a href="" class="btn">View All</a>
+                        </div>
+                        <table class="availabilty">
+                            <thead>
+                                <td>Photo</td>
+                                <td>Name</td>
+                                <td>Status</td>
+                                <td>Detail</td>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="img-box-small">
+                                            <img src="images/profile2.jpg" alt="">
+                                        </div>
+                                    </td>
+                                    <td>Dra. Jane Doe</td>
+                                    <td>Off-Duty</td>
+                                    <td><i class="far fa-eye"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="img-box-small">
+                                            <img src="images/profile1.jpg" alt="">
+                                        </div>
+                                    </td>
+                                    <td>Dr. James Doe</td>
+                                    <td>On-Duty</td>
+                                    <td><i class="far fa-eye"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="img-box-small">
+                                            <img src="images/profile4.jpg.png" alt="">
+                                        </div>
+                                    </td>
+                                    <td>Dra. Jenny Doe</td>
+                                    <td>Off-Duty</td>
+                                    <td><i class="far fa-eye"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="img-box-small">
+                                            <img src="images/profile3.jpg" alt="">
+                                        </div>
+                                    </td>
+                                    <td>Dr. John Doe</td>
+                                    <td>On-Duty</td>
+                                    <td><i class="far fa-eye"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">95</div>
-                        <div class="card-name">Heart Rate</div>
-                    </div>
-                    <div class="icon-box">
-                        <img src="images/heart-impulse.png" alt="Avatar" class="card-img">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">85.1%</div>
-                        <div class="card-name">Oxygen Level</div>
-                    </div>
-                    <div class="icon-box">
-                        <img src="images/oxygen-level.png" alt="Avatar" class="card-img">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">31</div>
-                        <div class="card-name">AHI Score</div>
-                    </div>
-                    <div class="icon-box">
-                        <img src="images/AHI-Score.png" alt="Avatar" style="width: 70%; margin-left: 50px;"  class="card-img">
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">30</div>
-                        <div class="card-name">Air flow</div>
-                    </div>
-                    <div class="icon-box">
-                        <img src="images/airflow.png" alt="Avatar" style="width: 70%; margin-left: 50px;" class="card-img">
-                    </div>
-                </div>
-            </div>
-            <header>
-                <div class="welcome-form">
-                    <div class="welcome-banner">
-                        <h1>Welcome, Marie Alexis Miravite</h1>
-                        <h2>Have a nice day!</h2>
-                    </div>
-                </div>
-            </header>
-            <div class="tables">
-                <div class="recent-appointments">
-                    <div class="heading">
-                        <h2> My Recent Appointments</h2>
-                        <a href="" class="btn">View All</a>
-                    </div>
-                    <table class="appointments">
-                        <thead>
-                            <td>Doctor's Name</td>
-                            <td>Status</td>
-                            <td>Date of Appointment</td>
-                            <td>Actions</td>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Dr. John Doe</td>
-                                <td>Settled</td>
-                                <td>October 16, 2022</td>
-                                <td>
-                                    <i class="far fa-eye"></i>
-                                    <i class="far fa-edit"></i>
-                                    <i class="far fa-trash-alt"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dra. Jane Doe</td>
-                                <td>Pending</td>
-                                <td>November 10, 2022</td>
-                                <td>
-                                    <i class="far fa-eye"></i>
-                                    <i class="far fa-edit"></i>
-                                    <i class="far fa-trash-alt"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dr. James Doe</td>
-                                <td>Pending</td>
-                                <td>November 16, 2022</td>
-                                <td>
-                                    <i class="far fa-eye"></i>
-                                    <i class="far fa-edit"></i>
-                                    <i class="far fa-trash-alt"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Dra. Jenny Doe</td>
-                                <td>Settled</td>
-                                <td>December 06, 2022</td>
-                                <td>
-                                    <i class="far fa-eye"></i>
-                                    <i class="far fa-edit"></i>
-                                    <i class="far fa-trash-alt"></i>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="available-doctor">
-                    <div class="heading">
-                        <h2>Available Doctors</h2>
-                        <a href="" class="btn">View All</a>
-                    </div>
-                    <table class="availabilty">
-                        <thead>
-                            <td>Photo</td>
-                            <td>Name</td>
-                            <td>Status</td>
-                            <td>Detail</td>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="img-box-small">
-                                        <img src="images/profile2.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td>Dra. Jane Doe</td>
-                                <td>Off-Duty</td>
-                                <td><i class="far fa-eye"></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-box-small">
-                                        <img src="images/profile1.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td>Dr. James Doe</td>
-                                <td>On-Duty</td>
-                                <td><i class="far fa-eye"></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-box-small">
-                                        <img src="images/profile4.jpg.png" alt="">
-                                    </div>
-                                </td>
-                                <td>Dra. Jenny Doe</td>
-                                <td>Off-Duty</td>
-                                <td><i class="far fa-eye"></i></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="img-box-small">
-                                        <img src="images/profile3.jpg" alt="">
-                                    </div>
-                                </td>
-                                <td>Dr. John Doe</td>
-                                <td>On-Duty</td>
-                                <td><i class="far fa-eye"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 
@@ -503,5 +524,9 @@ td i{
         width: 40px;
         height: 40px;
     }
+}
+
+.edit-profile {
+    color:#63b463
 }
 </style>

@@ -86,7 +86,7 @@
     };
 
     const signUpForm = async () => {
-      axios.post('/users', register_form.value).then(() => {
+      await axios.post('/users', register_form.value).then(() => {
         isSignUp.value = false;
         register_form.value.email = "";
         register_form.value.password = "";

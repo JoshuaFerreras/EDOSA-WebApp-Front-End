@@ -10,6 +10,10 @@ const logout = async() => {
     });
 };
 
+const profile = () => {
+    router.push('/profile');
+}
+
 
 
 </script>
@@ -27,7 +31,7 @@ const logout = async() => {
                 </a>
             </li>
             <li>
-                <a @click="">
+                <a @click="profile">
                     <i class="fas fa-user-md"></i>
                     <span class="title">My Profile</span>
                 </a>
