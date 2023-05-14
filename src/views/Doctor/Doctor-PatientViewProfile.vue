@@ -37,6 +37,24 @@
 
         <div class="contents">
             <div class="view-patient-form">
+<<<<<<< HEAD
+                <div class="person-info">
+                    <h2>{{ name }}</h2>
+                    <p><strong>Age:</strong> {{ age }}</p>
+                    <p><strong>Condition:</strong>{{ condition }}</p>
+                    <p><strong>Gender:</strong> {{ gender }}</p>
+                    <p><strong>Height:</strong> {{ height }}</p>
+                    <p><strong>Weight:</strong> {{ weight }}</p>
+                    <p><strong>BMI:</strong> {{ bmi }}</p>
+                    <p><strong>Risk:</strong> {{ risk }}</p>
+                    <p><strong>Birthdate:</strong> {{ birthdate }}</p>
+                    <p><strong>Address:</strong> {{ address }}</p>
+                    <p><strong>Email Address:</strong> {{ email }}</p>
+                    <p><strong>Mobile No:</strong> {{ mobile_no }}</p>
+                    <p><strong>Emergency Contact Person:</strong> {{ emergency_no }}</p>
+                </div>
+
+=======
                 <tbody>
                     <h4>
                         <td>Account Number: </td>
@@ -78,12 +96,9 @@
                         <td>Religion: </td>
                     </h4>
                 </tbody>
+>>>>>>> 779bce684a07f1eafe74318f219254d66eeab56c
             </div>
         </div>
-        
-
-
-        
         <footer>
             <div class="buttons">
                 <RouterLink to="/doctor-dashboard" class="button" style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
@@ -240,4 +255,45 @@ h4{
     background-size: cover;
 }
 }
+
+
+.person-info {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    
+  margin-top: 0;
+}
+
 </style>
+
+
+
+<script>
+import { ServerResponse } from 'http';
+
+export default {
+  data() {
+    return {
+      name: "Marie Alexis Miravite",
+      age: 30,
+      condition: "31-Severe",
+      gender: "Female",
+      height: 157,
+      weight: 90,
+      bmi: 36.5,
+      risk: "Obesity",
+      birthdate: 04-36-2023,
+      address: "Makati City",
+      email: "mariealexismiravite@gmail.com",
+      mobile_no: 099567530723
+    };
+  }
+};
+</script>

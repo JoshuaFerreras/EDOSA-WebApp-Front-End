@@ -11,20 +11,29 @@
         </header>
 
         <div class="contents">
-                <div class="appointment-form">
-                    <h2>Appointment Form</h2>
+                <div class="fillingup-form">
+                    <h2>Create Appointment</h2>
                 <form>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" v-model="name" required>
+                    <div class="form-group">
+                    <label for="appoint-doctor">Appoint Doctor:</label>
+                    <select id="appoint-doctor" v-model="appointDoctor" required>
+                    <option value="">Choose Doctor</option>
+                    <option value="doctor1">Dr. John Doe</option>
+                    <option value="doctor2">Dra. Jane Doe</option>
+                    <option value="doctor3">Dr. James Doe</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
+                    <label for="appointee-name">Email:</label>
                     <input type="email" id="email" v-model="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" v-model="phone" required>
+                    <label for="condition">Condition:</label>
+                    <select id="condition" v-model="condition" required>
+                    <option value="">Select Condition</option>
+                    <option value="doctor1">Diagnosed</option>
+                    <option value="doctor2">Undiagnosed</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="date">Date:</label>
@@ -35,17 +44,14 @@
                     <input type="time" id="time" v-model="time" required>
                 </div>
                 <div class="form-group">
-                    <label for="notes">Notes:</label>
+                    <label for="notes">Message:</label>
                     <textarea id="notes" v-model="notes"></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" @click.prevent="submitForm">Submit</button>
                 </div>
                 </form>
             </div>
 
-            <div class="appointment-form">
-                    <h2>Appointment Form</h2>
+            <div class="fillingup-form">
+                    <h2>Pre-Diagnosis</h2>
                 <form>
                 <div class="form-group">
                     <label for="name">Name:</label>
@@ -70,9 +76,6 @@
                 <div class="form-group">
                     <label for="notes">Notes:</label>
                     <textarea id="notes" v-model="notes"></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" @click.prevent="submitForm">Submit</button>
                 </div>
                 </form>
             </div>   
@@ -82,7 +85,7 @@
             <div class="buttons">
                 <RouterLink to="/doctor-dashboard" class="button" style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
                 <!-- <RouterLink to="" class="button" style="background-color: #11499C; color: white;" type="submit" @click.prevent="submitForm"> Save Changes <i class="fa-solid fa-forward"></i></RouterLink> -->
-                <button type="submit" @click.prevent="submitForm" style="background-color: #11499C; color: white;" class="button">Save Changes <i class="fa-solid fa-check"></i></button>
+                <button type="submit" @click.prevent="submitForm" style="background-color: #11499C; color: white;" class="button">Create Appointment <i class="fa-solid fa-check"></i></button>
             </div>
         </footer>
     </div>
@@ -144,20 +147,13 @@ margin-right: 10px;
 .contents{
   position: relative;  
   display: flex;
-  justify-content: center;
+  /* justify-content: center;
   align-items: center;
-  height: 210vh;
+  height: 210vh; */
   width: 100vw;
+  margin-top: 50px;
 }
-.view-appointment-form{
-position: relative;
-width: 90vw;
-height: 90%;
-border-radius: 10px;
-padding: 20px;
-box-shadow: 10px 10px 40px black;
-background: white;
-}
+
 
 .buttons{
     display: flex;
@@ -176,7 +172,7 @@ background: white;
   padding: 10px 20px;
   letter-spacing: 1px;
   cursor: pointer;
-  margin-bottom: 20px;
+  margin: 20px;
   text-decoration: none;
 }
 
@@ -185,18 +181,21 @@ background: white;
 }
 
 
-.appointment-form {
+.fillingup-form {
+  position: relative;
   max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   padding: 2rem;
-  background-color: #fff;
+  background: linear-gradient(-50deg, white, #11499C);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
 h2 {
   margin-bottom: 1.5rem;
   text-align: center;
+  text-transform: uppercase;
 }
 
 form {
@@ -215,7 +214,7 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input,
+input, select,
 textarea {
   padding: 0.5rem;
   font-size: 1rem;
@@ -223,7 +222,7 @@ textarea {
   border-radius: 5px;
 }
 
-button[type="submit"] {
+/* button[type="submit"] {
   background-color: #0074d9;
   color: #fff;
   border: none;
@@ -235,7 +234,7 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #005fad;
-} 
+}  */
 
 
 
@@ -298,7 +297,8 @@ h4{
 export default {
   data() {
     return {
-      name: "",
+      appointDoctor: "",
+      condition:"",
       email: "",
       phone: "",
       date: "",

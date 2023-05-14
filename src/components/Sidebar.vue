@@ -37,7 +37,7 @@ const profile = () => {
                 </a>
             </li>
             <li>
-                <a @click="">
+                <a @click="appointment">
                     <i class="fas fa-stethoscope"></i>
                     <span class="title">Appointments</span>
                 </a>
