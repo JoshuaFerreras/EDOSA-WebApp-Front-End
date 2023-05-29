@@ -36,7 +36,8 @@ a:-webkit-any-link{
   position: absolute;
   height: 100%;
   width: 100%;
-  background: linear-gradient(45deg, whitesmoke, #11499C);
+  /* background: linear-gradient(45deg, whitesmoke, #11499C); */
+  background: whitesmoke;
 }
 header{
   display: flex;
@@ -57,6 +58,7 @@ header{
   cursor: pointer;
   margin-top: 20px;
   text-decoration: none;
+  border: 2px solid #11499C;
 }
 .button:active{
   transform: scale(.89);
@@ -74,7 +76,7 @@ header{
   background-size: contain;
   border-radius: 10px;
   width: 400px;
-	height: 200px;
+	height: 160px;
   margin-left: 50px;
   margin-right: auto;
 }
@@ -98,6 +100,7 @@ img{
   transition: 0.9s;
   margin:  40px;
   background: linear-gradient(-90deg, whitesmoke, #326ABD);
+  /* background: #326ABD; */
   border-radius: 40px;
   text-decoration: none;
 }
@@ -106,7 +109,7 @@ img{
 .card:hover {
   box-shadow: 0 20px 20px 0 rgba(0,0,0,0.9);
   transform: scale(.9);
-  background: whitesmoke;
+  background: white;
   transition: .3s;
 }
 .card:active{
