@@ -1,6 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import PatientAppointment from '../views/Patient/Patient-Appointment.vue';
 
 const router = useRouter();
 
@@ -12,6 +13,9 @@ const logout = async() => {
 
 const profile = () => {
     router.push('/profile');
+}
+const appointment = () => {
+    router.push('/patient-appointment');
 }
 
 
@@ -39,7 +43,7 @@ const profile = () => {
             <li>
                 <a @click="appointment">
                     <i class="fas fa-stethoscope"></i>
-                    <span class="title">Appointments</span>
+                    <span class="title">My Appointment</span>
                 </a>
             </li>
             <li>

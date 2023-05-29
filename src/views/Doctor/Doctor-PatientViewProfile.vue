@@ -37,7 +37,6 @@
 
         <div class="contents">
             <div class="view-patient-form">
-<<<<<<< HEAD
                 <div class="person-info">
                     <h2>{{ name }}</h2>
                     <p><strong>Age:</strong> {{ age }}</p>
@@ -54,49 +53,6 @@
                     <p><strong>Emergency Contact Person:</strong> {{ emergency_no }}</p>
                 </div>
 
-=======
-                <tbody>
-                    <h4>
-                        <td>Account Number: </td>
-                    </h4>
-                    <h4>
-                        <td>Gender: </td>
-                    </h4>
-                    <h4>
-                        <td>Height(cm): </td>
-                    </h4>
-                    <h4>
-                        <td>Weight(kg): </td>
-                    </h4>
-                    <h4>
-                        <td>BMI: </td>
-                    </h4>
-                    <h4>
-                        <td>Risk: </td>
-                    </h4>
-                    <h4>
-                        <td>Birthdate: </td>
-                    </h4>
-                    <h4>
-                        <td>Address: </td>
-                    </h4>
-                    <h4>
-                        <td>Civil Status: </td>
-                    </h4>
-                    <h4>
-                        <td>Email Address: </td>
-                    </h4>
-                    <h4>
-                        <td>Mobile number: </td>
-                    </h4>
-                    <h4>
-                        <td>Emergency Contact Person: </td>
-                    </h4>
-                    <h4>
-                        <td>Religion: </td>
-                    </h4>
-                </tbody>
->>>>>>> 779bce684a07f1eafe74318f219254d66eeab56c
             </div>
         </div>
         <footer>
