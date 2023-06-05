@@ -58,29 +58,29 @@
           <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
         </form>
       </div> -->
-    
+
       <div class="container">
         <form @submit.prevent="signInForm" class="sign-in" action="#">
-            <h3></h3>
-            <!-- <h2>Sign In</h2> -->
-            <div class="input-field">
-              <i class="fa-solid fa-envelope"></i>
-              <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
-            </div>
-            <div class="input-field">
-              <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" id="in_password" name="password" v-model="login_form.password">
-              <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
-            </div>
-            <div class="forgotpass">Forgot your password?</div>
-            <button>Sign In</button>
-            <RouterLink to="/user-role"><button>Cancel</button></RouterLink>
-            <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
-          </form>
-        
+          <h3></h3>
+          <!-- <h2>Sign In</h2> -->
+          <div class="input-field">
+            <i class="fa-solid fa-envelope"></i>
+            <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
+          </div>
+          <div class="input-field">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" id="in_password" name="password" v-model="login_form.password">
+            <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
+          </div>
+          <div class="forgotpass">Forgot your password?</div>
+          <button>Sign In</button>
+          <RouterLink to="/user-role"><button>Cancel</button></RouterLink>
+          <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
+        </form>
+
       </div>
-    
-    
+
+
     </div>
   </article>
 </template>
@@ -326,9 +326,9 @@ form {
   justify-content: center;
   flex-direction: column;
   padding: 90px 60px;
-  width: 80%;
   height: calc(100% - 180px);
   text-align: center;
+  width: 80%;
   // background: linear-gradient(to bottom,#efefef, #ccc);
   // background: whitesmoke;
   transition: all .5s ease-in-out;
