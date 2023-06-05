@@ -538,6 +538,6 @@ td i {
 }
 
 .edit-profile {
-    color: #63b463
+    color: #81e0e0;
 }
 </style>

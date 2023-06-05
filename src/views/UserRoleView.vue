@@ -31,6 +31,9 @@ a:-webkit-any-link{
   text-decoration: none;
   color: #11499C;
 }
+a:-webkit-any-link:hover{
+  color: white;
+}
 
 .container{
   position: absolute;
@@ -109,7 +112,7 @@ img{
 .card:hover {
   box-shadow: 0 20px 20px 0 rgba(0,0,0,0.9);
   transform: scale(.9);
-  background: white;
+  background: #326ABD;
   transition: .3s;
 }
 .card:active{

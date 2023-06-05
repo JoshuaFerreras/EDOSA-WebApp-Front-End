@@ -22,10 +22,6 @@ const router = createRouter({
       component: () => import('../views/Doctor/Doctor-DboardView.vue'),
     },
     {
-      path: '/doctor-patient-profile',
-      component: () => import('../views/Doctor/Doctor-PatientViewProfile.vue'),
-    },
-    {
       path: '/doctor-myprofile',
       component: () => import('../views/Doctor/Doctor-MyProfile.vue'),
     },

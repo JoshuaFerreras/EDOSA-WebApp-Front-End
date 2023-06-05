@@ -17,8 +17,9 @@ const profile = () => {
 const appointment = () => {
     router.push('/patient-appointment');
 }
-
-
+const result = () => {
+    router.push('/doctor-patient-result');
+}
 
 </script>
 
@@ -51,15 +52,21 @@ const appointment = () => {
             <li>
                 <a @click="">
                     <i class="fa-solid fa-people-group"></i>
-                    <span class="title">Patients</span>
+                    <span class="title">My Patients</span>
                 </a>
             </li>
             <li>
+                <a @click="result">
+                    <i class="fa-solid fa-square-poll-vertical"></i>
+                    <span class="title">My Result</span>
+                </a>
+            </li>
+            <!-- <li>
                 <a @click="">
                     <i class="fa-sharp fa-solid fa-envelope"></i>
                     <span class="title">Mailbox</span>
                 </a>
-            </li>
+            </li> -->
             <li>
                 <a @click="">
                     <i class="fas fa-cog"></i>
