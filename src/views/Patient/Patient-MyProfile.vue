@@ -1,4 +1,3 @@
-
 <template>
     <div class="container">
         <header>
@@ -14,12 +13,8 @@
         <div class="contents">
             <div class="view-patient-form">
                 <div class="form-container">
-                <form>
-                <div class="form-group">
-                    <label for="account-no">Account No:</label>
-                    <input type="number" id="account-no" v-model="account_no" required>
-                </div>
-                <div class="form-group">
+                    <div class="column">
+                        <div class="form-group">
                     <label for="lname">Last name:</label>
                     <input type="text" id="lname" v-model="lname" required>
                 </div>
@@ -56,6 +51,8 @@
                     <label for="weight">Weight(kg):</label>
                     <input type="number" id="weight" v-model="weight" required>
                 </div>
+                    </div>
+                    <div class="column">
                 <div class="form-group">
                     <label for="birthdate">Birthdate:</label>
                     <input type="date" id="birthdate" v-model="birthdate" required>
@@ -88,7 +85,7 @@
                     <label for="emergency-number">Emergency Contact Person:</label>
                     <input type="text" id="mobile-number" v-model="mobileNumber" placeholder="Optional" pattern="[0-9]{11}">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="religion">Religion:</label>
                     <select id="religion" v-model="religion" required>
                     <option value="">Select Religion</option>
@@ -99,8 +96,10 @@
                     <option value="female">Buddism</option>
                     <option value="other">Other</option>
                     </select>
-                </div>
-                </form>
+                </div> -->
+                    </div>
+                
+
             </div>
             </div>
         </div>
@@ -174,24 +173,26 @@ margin-right: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 180vh;
-  width: 100vw;
+  /* height: 180vh; */
+  width: 100%;
 }
 .view-patient-form{
-position: relative;
-width: 50vw;
-height: 90%;
-border-radius: 10px;
-padding: 20px;
-box-shadow: 10px 10px 40px black;
-background: white;
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 60px;
+  padding: 2rem;
+  background: linear-gradient(-45deg, #11499C, whitesmoke);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
 .buttons{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20px;
 
 }
 
@@ -213,11 +214,17 @@ background: white;
 }
 
 .form-container {
+  display: flex;
   position: relative;  
-  max-width: 500px;
+  /* max-width: 500px; */
+  padding: 0;
   margin: auto;
 }
-
+.column{
+    flex: 50%;
+    padding: 2rem;
+    
+}
 .form-group {
   margin-bottom: 20px;
 }
@@ -226,7 +233,6 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color:#326ABD;
 }
 
 input[type="text"],

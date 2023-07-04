@@ -71,12 +71,12 @@ const updatePatientInfo = async (id) => {
         birthdate: profile_form.value.info.birthdate,
         address: profile_form.value.info.address,
         civil_status: profile_form.value.info.civil_status,
-        mobile_number: profile_form.mobile_number,
+        mobile_number: profile_form.value.info.mobile_number,
         contact_person: profile_form.value.info.contact_person,
     }).then(() => {
         isDisabled.value = true;
         location.reload();
-    }).catch((response) => {
+    }).catch(() => {
         
     });
 }
