@@ -4,21 +4,15 @@ import Sidebar from '../../components/Sidebar.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const user = ref(null);
-
+const props = defineProps(['user']);
 const editProfile = () => {
     router.push('/profile');
 }
-
-onMounted(async () => {
-  const data = await axios.get('/me');
-  user.value = data.data.data;
-});
 </script>
 
 <template>
     <div class="container">
-        <Sidebar/>
+        <Sidebar />
         <div class="main">
             <div class="top-bar">
                 <div class="search">
@@ -71,8 +65,8 @@ onMounted(async () => {
             <header>
                 <div class="welcome-form">
                     <div class="welcome-banner">
-                        <div v-if="user?.info.first_name != null">
-                            <h1>Welcome, {{ user?.info.last_name }}</h1>
+                        <div v-if="props.user?.info.first_name != null">
+                            <h1>Welcome, {{ props.user?.info.last_name }}</h1>
                             <h2>Have a nice day!</h2>
                         </div>
                         <div v-else>
@@ -220,18 +214,18 @@ onMounted(async () => {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
 
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
-.container{
+.container {
     position: relative;
     width: 100%;
 }
@@ -244,7 +238,7 @@ body{
     background: #fff;
 }
 
-.top-bar{
+.top-bar {
     position: fixed;
     height: 60px;
     width: calc(100% - 300px);
@@ -259,12 +253,12 @@ body{
     z-index: 1;
 }
 
-.top-bar .search{
+.top-bar .search {
     position: relative;
     max-width: 500px;
 }
 
-.search input{
+.search input {
     width: 100%;
     min-width: 128px;
     height: 40px;
@@ -273,7 +267,7 @@ body{
     outline: none;
     border-radius: 40px;
     background: #f5f5f5;
-    
+
 }
 
 .search i {
@@ -284,7 +278,7 @@ body{
     border-radius: 40px;
 }
 
-.user{
+.user {
     position: relative;
     width: 50px;
     height: 50px;
@@ -299,7 +293,7 @@ img {
     object-fit: cover;
 }
 
-.cards{
+.cards {
     margin-top: 60px;
     width: 100%;
     padding: 20px 20px;
@@ -308,7 +302,7 @@ img {
     grid-gap: 20px;
 }
 
-.cards .card{
+.cards .card {
     background: linear-gradient(-50deg, whitesmoke, #114A9c);
     padding: 20px;
     display: flex;
@@ -318,14 +312,14 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
-.number{
+.number {
     font-size: 35px;
     font-weight: 500;
     color: whitesmoke;
 }
 
-.card-name{
-    
+.card-name {
+
     font-weight: 600;
 }
 
@@ -333,12 +327,13 @@ img {
     font-size: 45px;
 }
 
-.card-img{
-    position: relative;                                                                                                                                                                                                      align-items: center;
+.card-img {
+    position: relative;
+    align-items: center;
     width: 100%;
 }
 
-.welcome-form{
+.welcome-form {
     background: linear-gradient(312deg, whitesmoke, #326ABD, #114A9c);
     height: 20vh;
     width: 98%;
@@ -348,7 +343,7 @@ img {
 }
 
 
-.welcome-banner{
+.welcome-banner {
     position: relative;
     font-size: 1.5rem;
     color: white;
@@ -358,7 +353,7 @@ img {
 }
 
 
-.tables{
+.tables {
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -367,7 +362,7 @@ img {
     padding: 0 20px 20px 20px;
 }
 
-.img-box-small{
+.img-box-small {
     position: relative;
     width: 40px;
     height: 40px;
@@ -375,29 +370,29 @@ img {
     overflow: hidden;
 }
 
-.recent-appointments{
-    position:relative;
+.recent-appointments {
+    position: relative;
     min-height: 350px;
     background: whitesmoke;
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.available-doctor{
+.available-doctor {
     min-height: 350px;
     background: whitesmoke;
     padding: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.heading{
+.heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #444;
 }
 
-.btn{
+.btn {
     padding: 5px 10px;
     background: #114A9c;
     text-decoration: none;
@@ -406,7 +401,8 @@ img {
     font-size: 1.5rem;
     border-radius: 50px;
 }
-.btn:active{
+
+.btn:active {
     padding: 5px 10px;
     background: whitesmoke;
     text-decoration: none;
@@ -416,37 +412,36 @@ img {
     border-radius: 50px;
 }
 
-table{
+table {
     margin-top: 10px;
     width: 100%;
     border-collapse: collapse;
 }
 
-thead td{
+thead td {
     font-weight: 600;
     color: #333;
-    
+
 }
 
-table tr{
+table tr {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-tbody tr:hover{
+tbody tr:hover {
     background: skyblue;
 }
 
-image.png
-table tbody tr:last-child{
+image.png table tbody tr:last-child {
     border-bottom: none;
 }
 
-td{
-    padding: 9px 5px; 
-    
+td {
+    padding: 9px 5px;
+
 }
 
-td i{
+td i {
     padding: 7px;
     color: #fff;
     border-radius: 50px;
@@ -454,19 +449,19 @@ td i{
     margin: 2px;
 }
 
-.recent-appointments table tbody td:last-child{
+.recent-appointments table tbody td:last-child {
     white-space: nowrap;
 }
 
-.fa-eye{
+.fa-eye {
     background: #32bea6;
 }
 
-.fa-edit{
+.fa-edit {
     background: #63b463;
 }
 
-.fa-trash-alt{
+.fa-trash-alt {
     background: #ed5564;
 }
 
@@ -474,18 +469,21 @@ td i{
 
 /* Responsive */
 
-@media(max-width:1370px){
-    .sidebar{
+@media(max-width:1370px) {
+    .sidebar {
         width: 60px;
     }
-    .main{
+
+    .main {
         width: calc(100% - 60px);
-        left: 60px 
+        left: 60px
     }
-    .top-bar{
+
+    .top-bar {
         width: calc(100% - 60px);
     }
-    .sidebar h1{
+
+    .sidebar h1 {
         position: relative;
         width: 100%;
         height: 100px;
@@ -494,45 +492,57 @@ td i{
         align-items: center;
         border-bottom: 2px solid #114A9c;
     }
-    .btn{
+
+    .btn {
         font-size: 1.3rem;
     }
 }
-@media(max-width:1060px){
-    .cards{
-        grid-template-columns: repeat(2,1fr);
+
+@media(max-width:1060px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .tables{
+
+    .tables {
         grid-template-columns: 1fr;
     }
 }
-@media(max-width:630px){
-    .cards{
+
+@media(max-width:630px) {
+    .cards {
         grid-template-columns: 1fr;
     }
-    .recent-appointments td:nth-child(3){
+
+    .recent-appointments td:nth-child(3) {
         display: none;
     }
 }
-@media(max-width:420px){
-    .recent-appointments, .available-doctor{
+
+@media(max-width:420px) {
+
+    .recent-appointments,
+    .available-doctor {
         font-size: 70%;
         padding: 10px;
         min-height: 200px;
     }
-    .cards, .tables{
+
+    .cards,
+    .tables {
         padding: 10px;
     }
-    .search input{
+
+    .search input {
         padding: 0 10px;
     }
-    .user{
+
+    .user {
         width: 40px;
         height: 40px;
     }
 }
 
 .edit-profile {
-    color:#63b463
+    color: #81e0e0;
 }
 </style>

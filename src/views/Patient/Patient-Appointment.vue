@@ -53,7 +53,7 @@
             <div class="fillingup-form">
                     <h2>Pre-Diagnosis</h2>
                 <form>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" id="name" v-model="name" required>
                 </div>
@@ -77,9 +77,12 @@
                     <label for="notes">Notes:</label>
                     <textarea id="notes" v-model="notes"></textarea>
                 </div>
+                <div class="form-group">
+                    <button type="submit" @click.prevent="submitForm">Submit</button>
+                </div>
                 </form>
             </div>   
-    </div>
+     </div>
         
         <footer>
             <div class="buttons">
@@ -112,7 +115,7 @@ header{
     align-items: center;
 }
 .title h1{
-    font-size: 90px;
+    font-size: 70px;
     text-transform: uppercase;
 }
 header ul{
@@ -125,19 +128,18 @@ header ul{
     width: 20vw;
     background-size: contain;
 }
-.patient-photo h1{
+/* .patient-photo h1{
     height: 100%;
     width: 100%;
     background: url(images/patient-profile1.png) no-repeat center center/cover;
     background-size: contain;
-    
-}
+} */
 .title-logo{
 position: relative;
 background: url(images/edosa-logo.png) no-repeat center center/cover;
 background-size: contain;
 border-radius: 10px;
-width: 400px;
+width: 260px;
 margin-left: auto;
 margin-right: 10px;
 }
@@ -187,7 +189,7 @@ margin-right: 10px;
   width: 100%;
   margin: 0 auto;
   padding: 2rem;
-  background: linear-gradient(-50deg, white, #11499C);
+  background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
@@ -195,7 +197,6 @@ margin-right: 10px;
 h2 {
   margin-bottom: 1.5rem;
   text-align: center;
-  text-transform: uppercase;
 }
 
 form {
@@ -208,10 +209,10 @@ form {
   display: flex;
   flex-direction: column;
 }
-
 label {
   font-weight: bold;
   margin-bottom: 0.5rem;
+  
 }
 
 input, select,
@@ -222,7 +223,7 @@ textarea {
   border-radius: 5px;
 }
 
-/* button[type="submit"] {
+button[type="submit"] {
   background-color: #0074d9;
   color: #fff;
   border: none;

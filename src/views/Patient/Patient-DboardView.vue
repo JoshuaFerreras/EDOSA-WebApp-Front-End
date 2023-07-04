@@ -1,202 +1,197 @@
 <script setup>
-import { onMounted, ref } from 'vue';
 import Sidebar from '../../components/Sidebar.vue';
-import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const user = ref(null);
+const props = defineProps(['user']);
 
 const editProfile = () => {
     router.push('/profile');
 }
 
-onMounted(async () => {
-  const data = await axios.get('/me');
-  user.value = data.data.data;
-});
 </script>
 <template>
-        <div class="container">
-            <Sidebar/>
-            <div class="main">
-                <div class="top-bar">
-                    <div class="search">
-                        <input type="text" name="search" placeholder="Search here">
-                        <label for="search"><i class="fas fa-search"></i></label>
+    <div class="container">
+        <Sidebar />
+        <div class="main">
+            <div class="top-bar">
+                <div class="search">
+                    <input type="text" name="search" placeholder="Search here">
+                    <label for="search"><i class="fas fa-search"></i></label>
+                </div>
+                <i class="fas fa-bell"></i>
+                <div class="user">
+                    <img src="images/doctor1.2.jpg" alt="">
+                </div>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">95</div>
+                        <div class="card-name">Heart Rate</div>
                     </div>
-                    <i class="fas fa-bell"></i>
-                    <div class="user">
-                        <img src="images/doctor1.2.jpg" alt="">
+                    <div class="icon-box">
+                        <img src="images/heart-impulse.png" alt="Avatar" class="card-img">
                     </div>
                 </div>
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">95</div>
-                            <div class="card-name">Heart Rate</div>
-                        </div>
-                        <div class="icon-box">
-                            <img src="images/heart-impulse.png" alt="Avatar" class="card-img">
-                        </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">85.1%</div>
+                        <div class="card-name">Oxygen Level</div>
                     </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">85.1%</div>
-                            <div class="card-name">Oxygen Level</div>
-                        </div>
-                        <div class="icon-box">
-                            <img src="images/oxygen-level.png" alt="Avatar" class="card-img">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">31</div>
-                            <div class="card-name">AHI Score</div>
-                        </div>
-                        <div class="icon-box">
-                            <img src="images/AHI-Score.png" alt="Avatar" style="width: 70%; margin-left: 50px;"  class="card-img">
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">30</div>
-                            <div class="card-name">Air flow</div>
-                        </div>
-                        <div class="icon-box">
-                            <img src="images/airflow.png" alt="Avatar" style="width: 70%; margin-left: 50px;" class="card-img">
-                        </div>
+                    <div class="icon-box">
+                        <img src="images/oxygen-level.png" alt="Avatar" class="card-img">
                     </div>
                 </div>
-                <header>
-                    <div class="welcome-form">
-                        <div class="welcome-banner">
-                            <div v-if="user?.info.first_name != null">
-                                <h1>Welcome, {{ user?.info.first_name }} {{ user?.info.last_name }}</h1>
-                                <h2>Have a nice day!</h2>
-                            </div>
-                            <div v-else>
-                                <h1>Welcome, <a @click="editProfile" class="edit-profile">Edit Profile</a></h1>
-                                <h2>Have a nice day!</h2>
-                            </div>
-                        </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">31</div>
+                        <div class="card-name">AHI Score</div>
                     </div>
-                </header>
-                <div class="tables">
-                    <div class="recent-appointments">
-                        <div class="heading">
-                            <h2> My Recent Appointments</h2>
-                            <a href="" class="btn">View All</a>
-                        </div>
-                        <table class="appointments">
-                            <thead>
-                                <td>Doctor's Name</td>
-                                <td>Status</td>
-                                <td>Date of Appointment</td>
-                                <td>Actions</td>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Dr. John Doe</td>
-                                    <td>Settled</td>
-                                    <td>October 16, 2022</td>
-                                    <td>
-                                        <i class="far fa-eye"></i>
-                                        <i class="far fa-edit"></i>
-                                        <i class="far fa-trash-alt"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Dra. Jane Doe</td>
-                                    <td>Pending</td>
-                                    <td>November 10, 2022</td>
-                                    <td>
-                                        <i class="far fa-eye"></i>
-                                        <i class="far fa-edit"></i>
-                                        <i class="far fa-trash-alt"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Dr. James Doe</td>
-                                    <td>Pending</td>
-                                    <td>November 16, 2022</td>
-                                    <td>
-                                        <i class="far fa-eye"></i>
-                                        <i class="far fa-edit"></i>
-                                        <i class="far fa-trash-alt"></i>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Dra. Jenny Doe</td>
-                                    <td>Settled</td>
-                                    <td>December 06, 2022</td>
-                                    <td>
-                                        <i class="far fa-eye"></i>
-                                        <i class="far fa-edit"></i>
-                                        <i class="far fa-trash-alt"></i>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="icon-box">
+                        <img src="images/AHI-Score.png" alt="Avatar" style="width: 70%; margin-left: 50px;"
+                            class="card-img">
                     </div>
-                    <div class="available-doctor">
-                        <div class="heading">
-                            <h2>Available Doctors</h2>
-                            <a href="" class="btn">View All</a>
-                        </div>
-                        <table class="availabilty">
-                            <thead>
-                                <td>Photo</td>
-                                <td>Name</td>
-                                <td>Status</td>
-                                <td>Detail</td>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="img-box-small">
-                                            <img src="images/profile2.jpg" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Dra. Jane Doe</td>
-                                    <td>Off-Duty</td>
-                                    <td><i class="far fa-eye"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img-box-small">
-                                            <img src="images/profile1.jpg" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Dr. James Doe</td>
-                                    <td>On-Duty</td>
-                                    <td><i class="far fa-eye"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img-box-small">
-                                            <img src="images/profile4.jpg.png" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Dra. Jenny Doe</td>
-                                    <td>Off-Duty</td>
-                                    <td><i class="far fa-eye"></i></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="img-box-small">
-                                            <img src="images/profile3.jpg" alt="">
-                                        </div>
-                                    </td>
-                                    <td>Dr. John Doe</td>
-                                    <td>On-Duty</td>
-                                    <td><i class="far fa-eye"></i></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <div class="number">30</div>
+                        <div class="card-name">Air flow</div>
+                    </div>
+                    <div class="icon-box">
+                        <img src="images/airflow.png" alt="Avatar" style="width: 70%; margin-left: 50px;" class="card-img">
                     </div>
                 </div>
             </div>
+            <header>
+                <div class="welcome-form">
+                    <div class="welcome-banner">
+                        <div v-if="props.user?.info.first_name != null">
+                            <h1>Welcome, {{ props.user?.info.first_name }} {{ props.user?.info.last_name }}</h1>
+                            <h2>Have a nice day!</h2>
+                        </div>
+                        <div v-else>
+                            <h1>Welcome, <a @click="editProfile" class="edit-profile">Edit Profile</a></h1>
+                            <h2>Have a nice day!</h2>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="tables">
+                <div class="recent-appointments">
+                    <div class="heading">
+                        <h2> My Recent Appointments</h2>
+                        <a href="" class="btn">View All</a>
+                    </div>
+                    <table class="appointments">
+                        <thead>
+                            <td>Doctor's Name</td>
+                            <td>Status</td>
+                            <td>Date of Appointment</td>
+                            <td>Actions</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dr. John Doe</td>
+                                <td>Settled</td>
+                                <td>October 16, 2022</td>
+                                <td>
+                                    <i class="far fa-eye"></i>
+                                    <i class="far fa-edit"></i>
+                                    <i class="far fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dra. Jane Doe</td>
+                                <td>Pending</td>
+                                <td>November 10, 2022</td>
+                                <td>
+                                    <i class="far fa-eye"></i>
+                                    <i class="far fa-edit"></i>
+                                    <i class="far fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dr. James Doe</td>
+                                <td>Pending</td>
+                                <td>November 16, 2022</td>
+                                <td>
+                                    <i class="far fa-eye"></i>
+                                    <i class="far fa-edit"></i>
+                                    <i class="far fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Dra. Jenny Doe</td>
+                                <td>Settled</td>
+                                <td>December 06, 2022</td>
+                                <td>
+                                    <i class="far fa-eye"></i>
+                                    <i class="far fa-edit"></i>
+                                    <i class="far fa-trash-alt"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="available-doctor">
+                    <div class="heading">
+                        <h2>Available Doctors</h2>
+                        <a href="" class="btn">View All</a>
+                    </div>
+                    <table class="availabilty">
+                        <thead>
+                            <td>Photo</td>
+                            <td>Name</td>
+                            <td>Status</td>
+                            <td>Detail</td>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="img-box-small">
+                                        <img src="images/profile2.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>Dra. Jane Doe</td>
+                                <td>Off-Duty</td>
+                                <td><i class="far fa-eye"></i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="img-box-small">
+                                        <img src="images/profile1.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>Dr. James Doe</td>
+                                <td>On-Duty</td>
+                                <td><i class="far fa-eye"></i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="img-box-small">
+                                        <img src="images/profile4.jpg.png" alt="">
+                                    </div>
+                                </td>
+                                <td>Dra. Jenny Doe</td>
+                                <td>Off-Duty</td>
+                                <td><i class="far fa-eye"></i></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="img-box-small">
+                                        <img src="images/profile3.jpg" alt="">
+                                    </div>
+                                </td>
+                                <td>Dr. John Doe</td>
+                                <td>On-Duty</td>
+                                <td><i class="far fa-eye"></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -204,18 +199,18 @@ onMounted(async () => {
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
 
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
 
-body{
+body {
     overflow-x: hidden;
 }
 
-.container{
+.container {
     position: relative;
     width: 100%;
 }
@@ -228,7 +223,7 @@ body{
     background: #fff;
 }
 
-.top-bar{
+.top-bar {
     position: fixed;
     height: 60px;
     width: calc(100% - 300px);
@@ -243,12 +238,12 @@ body{
     z-index: 1;
 }
 
-.top-bar .search{
+.top-bar .search {
     position: relative;
     max-width: 500px;
 }
 
-.search input{
+.search input {
     width: 100%;
     min-width: 128px;
     height: 40px;
@@ -257,7 +252,7 @@ body{
     outline: none;
     border-radius: 40px;
     background: #f5f5f5;
-    
+
 }
 
 .search i {
@@ -268,7 +263,7 @@ body{
     border-radius: 40px;
 }
 
-.user{
+.user {
     position: relative;
     width: 50px;
     height: 50px;
@@ -283,7 +278,7 @@ img {
     object-fit: cover;
 }
 
-.cards{
+.cards {
     margin-top: 60px;
     width: 100%;
     padding: 20px 20px;
@@ -293,10 +288,10 @@ img {
     grid-row: auto auto;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
-    
+
 }
 
-.card{
+.card {
     background: linear-gradient(-50deg, whitesmoke, #114A9c);
     padding: 20px;
     display: flex;
@@ -306,14 +301,14 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
-.number{
+.number {
     font-size: 35px;
     font-weight: 500;
     color: whitesmoke;
 }
 
-.card-name{
-    
+.card-name {
+
     font-weight: 600;
 }
 
@@ -321,12 +316,13 @@ img {
     font-size: 45px;
 }
 
-.card-img{
-    position: relative;                                                                                                                                                                                                      align-items: center;
+.card-img {
+    position: relative;
+    align-items: center;
     width: 100%;
 }
 
-.welcome-form{
+.welcome-form {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,7 +333,8 @@ img {
     margin: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
 }
-.welcome-banner{
+
+.welcome-banner {
     position: relative;
     font-size: 1.5rem;
     color: white;
@@ -346,7 +343,7 @@ img {
     padding: 30px;
 }
 
-.welcome-banner img{
+.welcome-banner img {
     position: relative;
     width: 50%;
     height: 100%;
@@ -355,7 +352,7 @@ img {
     margin-right: 10px;
 }
 
-.tables{
+.tables {
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -364,7 +361,7 @@ img {
     padding: 0 20px 20px 20px;
 }
 
-.img-box-small{
+.img-box-small {
     position: relative;
     width: 40px;
     height: 40px;
@@ -372,7 +369,7 @@ img {
     overflow: hidden;
 }
 
-.recent-appointments{
+.recent-appointments {
     position: relative;
     /* margin-top: 90px; */
     min-height: 350px;
@@ -381,7 +378,7 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.available-doctor{
+.available-doctor {
     /* margin-top: 90px; */
     min-height: 350px;
     background: whitesmoke;
@@ -389,14 +386,14 @@ img {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.heading{
+.heading {
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: #444;
 }
 
-.btn{
+.btn {
     padding: 5px 10px;
     background: #114A9c;
     text-decoration: none;
@@ -405,7 +402,8 @@ img {
     font-size: 1.5rem;
     border-radius: 50px;
 }
-.btn:active{
+
+.btn:active {
     padding: 5px 10px;
     background: whitesmoke;
     text-decoration: none;
@@ -415,54 +413,53 @@ img {
     border-radius: 50px;
 }
 
-table{
+table {
     margin-top: 10px;
     width: 100%;
     border-collapse: collapse;
 }
 
-thead td{
+thead td {
     font-weight: 600;
     color: #333;
 }
 
-table tr{
+table tr {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-tbody tr:hover{
+tbody tr:hover {
     background: skyblue;
 }
 
-image.png
-table tbody tr:last-child{
+image.png table tbody tr:last-child {
     border-bottom: none;
 }
 
-td{
-    padding: 9px 5px; 
+td {
+    padding: 9px 5px;
 }
 
-td i{
+td i {
     padding: 7px;
     margin: 2px;
     color: #fff;
     border-radius: 50px;
 }
 
-.recent-appointments table tbody td:last-child{
+.recent-appointments table tbody td:last-child {
     white-space: nowrap;
 }
 
-.fa-eye{
+.fa-eye {
     background: #32bea6;
 }
 
-.fa-edit{
+.fa-edit {
     background: #63b463;
 }
 
-.fa-trash-alt{
+.fa-trash-alt {
     background: #ed5564;
 }
 
@@ -470,18 +467,21 @@ td i{
 
 /* Responsive */
 
-@media(max-width:1370px){
-    .sidebar{
+@media(max-width:1370px) {
+    .sidebar {
         width: 60px;
     }
-    .main{
+
+    .main {
         width: calc(100% - 60px);
-        left: 60px 
+        left: 60px
     }
-    .top-bar{
+
+    .top-bar {
         width: calc(100% - 60px);
     }
-    .sidebar h1{
+
+    .sidebar h1 {
         background: url(images/edosa-logo3.png) no-repeat center center/cover;
         position: relative;
         width: 100%;
@@ -492,41 +492,52 @@ td i{
         border-bottom: 2px solid #114A9c;
     }
 }
-@media(max-width:1060px){
-    .cards{
-        grid-template-columns: repeat(2,1fr);
+
+@media(max-width:1060px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
     }
-    .tables{
+
+    .tables {
         grid-template-columns: 1fr;
     }
 }
-@media(max-width:630px){
-    .cards{
+
+@media(max-width:630px) {
+    .cards {
         grid-template-columns: 1fr;
     }
-    .recent-appointments td:nth-child(3){
+
+    .recent-appointments td:nth-child(3) {
         display: none;
     }
 }
-@media(max-width:420px){
-    .recent-appointments, .available-doctor{
+
+@media(max-width:420px) {
+
+    .recent-appointments,
+    .available-doctor {
         font-size: 70%;
         padding: 10px;
         min-height: 200px;
     }
-    .cards, .tables{
+
+    .cards,
+    .tables {
         padding: 10px;
     }
-    .search input{
+
+    .search input {
         padding: 0 10px;
     }
-    .user{
+
+    .user {
         width: 40px;
         height: 40px;
     }
 }
 
 .edit-profile {
-    color:#63b463
+    color: #81e0e0;
 }
 </style>
