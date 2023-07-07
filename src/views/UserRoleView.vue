@@ -141,7 +141,7 @@ img{
 /* Responsive */
 
 
-@media (max-width:779px){
+@media (max-width:1280px){
 
 .container{
   height: max-content;
@@ -157,5 +157,25 @@ img{
   flex-direction: column;
   box-sizing: border-box;
 }
+}
+
+@media (max-width: 704px) {
+  .button{
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 701px) {
+  .button{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 </style>

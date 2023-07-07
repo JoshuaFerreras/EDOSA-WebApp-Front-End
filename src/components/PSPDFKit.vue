@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="pdf-container"></div>
   </template>
   
@@ -65,4 +65,4 @@
   .pdf-container {
     height: 100vh;
   }
-  </style>
+  </style> -->

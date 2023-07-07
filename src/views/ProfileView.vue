@@ -47,7 +47,7 @@ onMounted(async () => {
 });
 
 
-const editProfile = () => {
+const  editProfile= () => {
     isDisabled.value = false;
 };
 
@@ -104,104 +104,112 @@ const updatePatientInfo = async (id) => {
         <div class="contents">
             <div class="view-patient-form">
                 <div class="form-container">
-                    <form @submit.prevent>
+                    <div class="column">
                         <div class="form-group">
-                            <label for="email">Email Address:</label>
-                            <input type="email" id="email" v-model="profile_form.email" disabled>
+                            <label for="lname">Last name:</label>
+                            <input type="text" id="lname" v-model="lname" required>
                         </div>
-                        <div class="form-group">
-                            <label for="lname">Last name: </label>
-                            <input type="text" id="lname" v-model="profile_form.info.last_name" :disabled="isDisabled">
-                        </div>
+
                         <div class="form-group">
                             <label for="fname">First name:</label>
-                            <input type="text" id="fname" v-model='profile_form.info.first_name' :disabled="isDisabled">
+                            <input type="text" id="fname" v-model="fname" required>
                         </div>
 
                         <div class="form-group">
                             <label for="mname">Middle name:</label>
-                            <input type="text" id="mname" v-model="profile_form.info.middle_name" :disabled="isDisabled">
+                            <input type="text" id="mname" v-model="mname" required>
                         </div>
 
                         <div class="form-group">
                             <label for="age">Age:</label>
-                            <input type="number" id="age" v-model="profile_form.info.age" disabled>
+                            <input type="number" id="age" v-model="age" required>
                         </div>
 
                         <div class="form-group">
                             <label for="gender">Gender:</label>
-                            <select id="gender" :disabled="isDisabled" v-model="profile_form.info.gender">
-                                <option value="" disabled>Select Gender</option>
-                                <option value="0">Female</option>
-                                <option value="1">Male</option>
+                            <select id="gender" v-model="gender" required>
+                                <option value="">Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label for="height">Height(cm):</label>
-                            <input type="number" id="height" v-model="profile_form.info.height" :disabled="isDisabled">
+                            <input type="number" id="height" v-model="height" required>
                         </div>
                         <div class="form-group">
                             <label for="weight">Weight(kg):</label>
-                            <input type="number" id="weight" v-model="profile_form.info.weight" :disabled="isDisabled">
+                            <input type="number" id="weight" v-model="weight" required>
                         </div>
+                    </div>
+                    <div class="column">
                         <div class="form-group">
                             <label for="birthdate">Birthdate:</label>
-                            <input type="text" id="birthdate" v-model="profile_form.info.birthdate" :disabled="isDisabled">
+                            <input type="date" id="birthdate" v-model="birthdate" required>
                         </div>
                         <div class="form-group">
                             <label for="address">Address:</label>
-                            <textarea id="address" v-model="profile_form.info.address" :disabled="isDisabled"></textarea>
+                            <textarea id="address" v-model="address" required></textarea>
                         </div>
                         <div class="form-group">
                             <label for="civilstatus">Civil Status:</label>
-                            <input type="text" id="civilstatus" v-model="profile_form.info.civil_status"
-                                :disabled="isDisabled">
+                            <select id="civilstatus" v-model="civilStatus" required>
+                                <option value="">Select Status</option>
+                                <option value="male">Single</option>
+                                <option value="female">Married</option>
+                                <option value="other">Widowed</option>
+                                <option value="other">Divorced</option>
+                                <option value="other">Seperated</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" v-model="email" required>
                         </div>
                         <div class="form-group">
                             <label for="mobile-number">Mobile Number:</label>
-                            <input type="text" id="mobile-number" placeholder="09XXXXXXXXX"
-                                v-model="profile_form.info.mobile_number" :disabled="isDisabled">
+                            <input type="text" id="mobile-number" v-model="mobileNumber" placeholder="09XXXXXXXXX"
+                                pattern="[0-9]{11}" required>
                         </div>
                         <div class="form-group">
                             <label for="emergency-number">Emergency Contact Person:</label>
-                            <input type="text" id="mobile-number" placeholder="Optional"
-                                v-model="profile_form.info.contact_person" :disabled="isDisabled">
+                            <input type="text" id="mobile-number" v-model="mobileNumber" placeholder="Optional"
+                                pattern="[0-9]{11}">
                         </div>
-                        <footer>
-                            <div class="buttons">
-                                <RouterLink to="/patient-dashboard" class="button"
-                                    style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i
-                                        class="fa-solid fa-backward"></i> Go Back</RouterLink>
-                                <!-- <RouterLink to="" class="button" style="background-color: #11499C; color: white;" type="submit" @click.prevent="submitForm"> Save Changes <i class="fa-solid fa-forward"></i></RouterLink> -->
-                                <div v-if="isDisabled === true">
-                                    <button type="button" @click="editProfile" style="background-color: red; color: white;"
-                                        class="button">Edit Profile <i class="fa-solid fa-pen-to-square"></i></button>
-                                </div>
-                                <div v-else>
-                                    <button type="button" @click="cancel" style="background-color: red; color: white;"
-                                        class="button">Cancel <i class="fa-solid fa-pen-to-square"></i></button>
-                                </div>
-                                <div v-if="isDisabled === false && profile_form?.info?.last_name == null">
-                                    <button type="submit" @click="submitPatientInfo"
-                                        style="background-color: #11499C; color: white;" class="button">Save Changes <i
-                                            class="fa-solid fa-check"></i></button>
-                                </div>
-                                <div v-if="isDisabled === false && profile_form?.info?.last_name != null">
-                                    <button type="submit" @click="updatePatientInfo(profile_form.info.id)"
-                                        style="background-color: #11499C; color: white;" class="button">Save Changes <i
-                                            class="fa-solid fa-check"></i></button>
-                                </div>
-                            </div>
-                        </footer>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-
-
-    </div>
+        <footer>
+            <div class="buttons">
+                <RouterLink to="/patient-dashboard" class="button"
+                    style="background-color: whitesmoke; border: 2px solid #11499C; color: #11499C;"><i
+                        class="fa-solid fa-backward"></i> Go Back</RouterLink>
+                <div v-if="isDisabled === true">
+                    <button type="button" @click="editProfile" style="background-color: red; color: white;"
+                        class="button">Edit Profile <i class="fa-solid fa-pen-to-square"></i></button>
+                </div>
+                <div v-else>
+                    <button type="button" @click="cancel" style="background-color: red; color: white;"
+                        class="button">Cancel <i class="fa-solid fa-square"></i></button>
+                </div>
+                <div v-if="isDisabled === false && profile_form?.info?.last_name == null">
+                    <button type="submit" @click="submitPatientInfo"
+                        style="background-color: #11499C; color: white;" class="button">Save Changes <i
+                            class="fa-solid fa-check"></i></button>
+                </div>
+                <div v-if="isDisabled === false && profile_form?.info?.last_name != null">
+                    <button type="submit" @click="updatePatientInfo(profile_form.info.id)"
+                        style="background-color: #11499C; color: white;" class="button">Save Changes <i
+                            class="fa-solid fa-check"></i></button>
+                </div>
+            </div>
+        </footer>
+</div>
 </template>
+
 
 <style scoped>
 .container {
@@ -246,7 +254,6 @@ header ul {
     width: 100%;
     background: url(images/patient-profile1.png) no-repeat center center/cover;
     background-size: contain;
-
 }
 
 .title-logo {
@@ -259,33 +266,32 @@ header ul {
     margin-right: 10px;
 }
 
-
-
 .contents {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 180vh;
-    width: 100vw;
+    /* height: 180vh; */
+    width: 100%;
 }
 
 .view-patient-form {
-    position: relative;
-    width: 50vw;
-    height: 90%;
+    max-width: 90%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 2rem;
+    background: linear-gradient(-45deg, #11499C, whitesmoke);
     border-radius: 10px;
-    padding: 20px;
-    box-shadow: 10px 10px 40px black;
-    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
 .buttons {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-
+    margin-top: 20px;
 }
 
 .button {
@@ -306,9 +312,16 @@ header ul {
 }
 
 .form-container {
+    display: flex;
     position: relative;
-    max-width: 500px;
+    /* max-width: 500px; */
+    padding: 0;
     margin: auto;
+}
+
+.column {
+    flex: 50%;
+    padding: 2rem;
 }
 
 .form-group {
@@ -319,7 +332,6 @@ label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    color: #326ABD;
 }
 
 input[type="text"],
@@ -364,64 +376,52 @@ input[type="text"]:focus {
     box-shadow: 0px 0px 5px #1E88E5;
 }
 
-
 /* Responsive UI */
 @media (max-width: 800px) {
-    img {
-        position: relative;
-        width: 55%;
+    .title h1 {
+        font-size: 60px;
     }
 }
 
-@media (max-width: 650px) {
-
-    .result-cards {
-        min-height: 50%;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        box-sizing: border-box;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .card {
-        width: 90%;
-    }
-
-    .buttons {
-        justify-content: space-around;
-    }
-
-    .button {
-        margin: 0;
-        margin-top: 10;
-        margin-bottom: 10px;
-        justify-content: space-around;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
-
-    h2 {
-        font-size: 25px;
-    }
-
-    h3 {
-        font-size: 20px;
-    }
-
-    h4 {
-        font-size: 60px;
+@media (max-width: 720px) {
+    .title h1 {
+        font-size: 40px;
     }
 
     .title-logo {
-        width: 200px;
+        width: 150px;
     }
 
-    .patient-photo h1 {
-        background-size: cover;
+    .patient-photo {
+        height: 15vh;
+        width: 15vw;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        margin: 10px 0;
+    }
+
+    .form-container {
+        flex-direction: column;
+    }
+
+    .column {
+        padding: 1rem;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    input[type="email"],
+    select,
+    textarea {
+        font-size: 14px;
     }
 }
 </style>
+

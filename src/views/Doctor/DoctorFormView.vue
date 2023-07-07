@@ -1,64 +1,6 @@
 <template>
   <article>
     <div class="contents">
-      <!-- <div class="container" :class="{ 'sign-up-active': isSignUp }">
-        <div class="overlay-container">
-          <RouterLink to="/user-role"><button class="back-btn"><i class="fa-solid fa-backward"></i> Go Back</button>
-          </RouterLink>
-          <div class="overlay">
-            <div class="overlay-left">
-              <h3></h3>
-              <p>Already have an account?</p>
-              <button class="invert" id="signIn" @click="signInBtn">Sign In</button>
-              <h5></h5>
-            </div>
-            <div class="overlay-right">
-              <h3></h3>
-              <p>Create your account now!</p>
-              <button class="invert" id="signUp" @click="signUpBtn">Sign Up</button>
-              <h4></h4>
-
-            </div>
-          </div>
-        </div>
-        <form class="sign-up" action="#" @submit.prevent="signUpForm">
-          <h2>Sign Up</h2>
-          <div class="input-field">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="text" placeholder="Email Address" v-model="email">
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" id="up_password" v-model="password">
-            <i class="fa fa-eye" aria-hidden="true" id="up_eye" onclick="Up_pass()"></i>
-          </div>
-          <div class="input-field">
-            <i class="fa-sharp fa-solid fa-circle-check"></i>
-            <input type="password" placeholder="Confirm Password" id="Confirm_password" v-model="confirm_password">
-            <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
-          </div>
-          <label>Proof of Identity:
-            <input type="file" id="file" ref="file" @change="onChange" />
-          </label>
-          <button @click="signUpForm">Sign Up</button>
-        </form>
-        <form @submit.prevent="signInForm" class="sign-in" action="#">
-          <h2>Sign In</h2>
-          <div class="input-field">
-            <i class="fa-solid fa-envelope"></i>
-            <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
-          </div>
-          <div class="input-field">
-            <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" id="in_password" name="password" v-model="login_form.password">
-            <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
-          </div>
-          <div class="forgotpass">Forgot your password?</div>
-          <button>Sign In</button>
-          <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
-        </form>
-      </div> -->
-
       <div class="container">
         <form @submit.prevent="signInForm" class="sign-in" action="#">
           <h3></h3>

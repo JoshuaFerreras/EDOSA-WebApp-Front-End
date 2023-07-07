@@ -20,7 +20,10 @@ import ChartComponent from '../../components/ChartComponent.vue';
             </ul>
             <div class="title-logo"></div>
         </header>
+
         <ChartComponent/>
+        
+        <h4>SUMMARY OF FINDINGS</h4>
         <div class="result-cards">
             <div class="card">
                 <div>Heart Rate</div>
@@ -28,21 +31,22 @@ import ChartComponent from '../../components/ChartComponent.vue';
                 <div class="heart-result"></div>
                 <div class="heart-result">91.2 bpm</div>
             </div>
-            <div class="card2">
-                <div>Oxygen Level</div>
-                <img src="images/oxygen-level.png" alt="Avatar">
-                <div class="oxygen-result">85.1%</div>
-            </div>
+            
             <div class="card2">
                 <div>AHI Score</div>
                 <img src="images/AHI-Score.png" alt="Avatar">
                 <div class="AHI-result">31 Severe</div>
             </div>
-            <div class="card">
+            <div class="card2">
                 <div>Airflow Level</div>
                 <img src="images/airflow.png" alt="Avatar">
                 <div class="BP-result">30 cfm</div>
             </div>
+            <div class="card">
+                    <div>Oxygen Level</div>
+                    <img src="images/oxygen-level.png" alt="Avatar">
+                    <div class="oxygen-result">85.1%</div>
+                </div>
         </div>
         <footer>
             <div class="buttons">
@@ -65,9 +69,16 @@ import ChartComponent from '../../components/ChartComponent.vue';
 
 .container {
     position: absolute;
-    height: 100%;
+    /* height: 100%; */
     width: 100%;
-    background: white;
+    background: whitesmoke;
+}
+
+h4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
 }
 
 header {
@@ -137,23 +148,6 @@ header ul {
 
 .card {
     margin: 15px;
-    background: #326ABD;
-    border-radius: 40px;
-    /* height: 25%; */
-    width: 50%;
-    text-transform: uppercase;
-    box-shadow: 40px 40px 40px 0 rgba(0, 0, 0, 0.9);
-    transition: 0.9s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    border: 3px solid white;
-    
-
-}
-.card2 {
-    margin: 15px;
     background: whitesmoke;
     border-radius: 40px;
     /* height: 25%; */
@@ -164,14 +158,32 @@ header ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 1px solid black;
     color: #11449C;
-    border: 3px solid #11499C;
+
+
+}
+
+.card2 {
+    margin: 15px;
+    background: #326ABD;
+    border-radius: 40px;
+    /* height: 25%; */
+    width: 50%;
+    text-transform: uppercase;
+    box-shadow: 20px 20px 20px 0 rgba(0, 0, 0, 0.9);
+    transition: 0.9s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    color: white;
 
 }
 
 img {
     position: relative;
-    width: 30%;
+    width: 15%;
 }
 
 .buttons {
@@ -179,7 +191,7 @@ img {
     justify-content: center;
     align-items: center;
     margin-top: 10px;
-    
+
 
 }
 
@@ -225,19 +237,24 @@ img {
         align-items: center;
     }
 
+    .result-cards>div {
+        flex-basis: 100%;
+    }
+
     .card {
         width: 90%;
     }
 
     .buttons {
-        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
     }
 
     .button {
         margin: 0;
-        margin-top: 10;
+        margin-top: 10px;
         margin-bottom: 10px;
-        justify-content: space-around;
+        justify-content: center;
     }
 
     h1 {
