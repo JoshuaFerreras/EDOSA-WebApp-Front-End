@@ -1,25 +1,24 @@
 <script setup>
 import axios from 'axios';
 import { useRouter } from 'vue-router';
-import PatientAppointment from '../views/Patient/Patient-Appointment.vue';
 
 const router = useRouter();
 const props = defineProps(['user']);
 
 const logout = async () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     router.push('/user-role');
 };
 
 const profile = () => {
     router.push('/profile');
 }
-const appointment = () => {
-    router.push('/patient-appointment');
-}
-const result = () => {
-    router.push('/doctor-patient-result');
-}
+
+
+// const result = () => {
+//     router.push('/patient-result');
+// }
 
 </script>
 
@@ -43,28 +42,10 @@ const result = () => {
                     <span class="title">My Profile</span>
                 </a>
             </li>
-            <li>
-                <a @click="appointment">
-                    <i class="fas fa-stethoscope"></i>
-                    <span class="title">My Appointment</span>
-                </a>
-            </li>
-            <li>
-                <a @click="">
-                    <i class="fa-solid fa-people-group"></i>
-                    <span class="title">My Patients</span>
-                </a>
-            </li>
-            <li>
+            <!-- <li>
                 <a @click="result">
                     <i class="fa-solid fa-square-poll-vertical"></i>
                     <span class="title">My Result</span>
-                </a>
-            </li>
-            <!-- <li>
-                <a @click="">
-                    <i class="fa-sharp fa-solid fa-envelope"></i>
-                    <span class="title">Mailbox</span>
                 </a>
             </li> -->
             <li>
@@ -77,6 +58,24 @@ const result = () => {
                 <a @click="">
                     <i class="fas fa-question"></i>
                     <span class="title">Help</span>
+                </a>
+            </li>
+            <li>
+                <a @click="">
+                    <i class="fa-solid fa-comments"></i>
+                    <span class="title">Feedback</span>
+                </a>
+            </li>
+            <li>
+                <a @click="">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span class="title">About Us</span>
+                </a>
+            </li>
+            <li>
+                <a @click="">
+                    <i class="fa-solid fa-circle-question"></i>
+                    <span class="title">FAQ</span>
                 </a>
             </li>
             <li v-if="props.user == props.user">
@@ -98,6 +97,7 @@ const result = () => {
     overflow-x: hidden;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
     z-index: 2;
+    /* border-radius: 0px 0px 40px 40px; */
 }
 
 .sidebar ul li {
@@ -145,7 +145,18 @@ const result = () => {
     transition: 0.3s;
     align-items: center;
     border-bottom: 2px solid #114A9c;
+    animation: fadeInBackground 1s ease-in-out forwards;
 }
+
+@keyframes fadeInBackground {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 /* Responsive */
 

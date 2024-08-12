@@ -7,14 +7,15 @@
           <!-- <h2>Sign In</h2> -->
           <div class="input-field">
             <i class="fa-solid fa-envelope"></i>
-            <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
+            <input type="text" placeholder="Email Address" name="email" v-model="login_form.email" required>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" id="in_password" name="password" v-model="login_form.password">
+            <input type="password" placeholder="Password" id="in_password" name="password" v-model="login_form.password" required>
             <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
+          <div class="errormsg" v-if="errorMessage">{{ errorMessage }}</div>
           <button>Sign In</button>
           <RouterLink to="/user-role"><button>Cancel</button></RouterLink>
           <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
@@ -32,52 +33,21 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
+const errorMessage = ref("");
 const router = useRouter();
 const login_form = ref({
   email: "",
   password: "",
 });
 
-const isSignUp = ref(false);
-const email = ref("");
-const confirm_password = ref("");
-const password = ref("");
-const role_id = 1;
-const file = ref(null);
-
-const signInBtn = () => {
-  isSignUp.value = false;
-};
-
-const signUpBtn = () => {
-  isSignUp.value = true;
-};
-
-const onChange = (event) => {
-  file.value = event.target.files[0];
-}
-const signUpForm = async () => {
-  const formdata = new FormData();
-  formdata.append('file', file.value);
-  formdata.append('email', email.value);
-  formdata.append('password', password.value);
-  formdata.append('confirm_password', confirm_password.value);
-  formdata.append('role_id', role_id);
-  await axios.post('/users', formdata).then(() => {
-    isSignUp.value = false;
-    email.value = "";
-    password.value = "";
-    confirm_password.value = "";
-    file.value = null;
-  });
-}
-
 const signInForm = async () => {
-  await axios.post('/login', login_form.value).then((response) => {
+  await axios.post('http://localhost:5000/login', login_form.value).then((response) => {
     router.push('/doctor-dashboard');
-    localStorage.setItem('token', response.data.data.token);
-  }).catch(() => {
-    router.push('/patient-form');
+    localStorage.setItem('token', response.data.access_token);
+    response.data.message;
+  }).catch((error) => {
+    errorMessage.value = "The email or password you entered isn't connected to an account.";
+    console.error(error.message);
   });
 }
 </script>
@@ -85,25 +55,31 @@ const signInForm = async () => {
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
 
-* {
-  box-sizing: content-box;
-}
+
 
 label {
   font-size: 18px;
   color: #11499C;
   text-transform: uppercase;
 }
+* {
+  box-sizing: content-box;
+}
+
+/* Rest of the styles remain unchanged */
+
+.errormsg {
+  color: red;
+}
 
 .contents {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; /* Add this line to center vertically */
   background-color: #114A9C;
   height: 100vh;
   width: 100vw;
 }
-
 .container {
   position: relative;
   width: 50%;
@@ -270,7 +246,7 @@ form {
   padding: 90px 60px;
   height: calc(100% - 180px);
   text-align: center;
-  width: 80%;
+  width: 90%;
   // background: linear-gradient(to bottom,#efefef, #ccc);
   // background: whitesmoke;
   transition: all .5s ease-in-out;
@@ -382,26 +358,34 @@ form {
     z-index: 10;
   }
 }
+.fa-eye {
+    background: none;
+}
 
 /* Responsive UI */
 
+@media (max-width:1700px) {
+  form{
+    width: 85%;
+  }
+}
+@media (max-width:1200px) {
+  form{
+    width: 80%;
+  }
+}
 @media (max-width:900px) {
   .container {
     width: 100vw;
     height: 100vh;
     border-radius: 0%
   }
+  form{
+    width: 85%;
+  }
 }
 
 @media(max-width:635px) {
-  .overlay-container {
-    display: none;
-  }
-
-  .overlay {
-    display: none;
-  }
-
   .sign-in {
     width: 82%;
   }
@@ -409,6 +393,25 @@ form {
   .account-text {
     display: inline-block;
     margin-top: 30px;
+  }
+}
+  form{
+    padding: 90px 60px;
+  }
+@media (max-width:375px) {
+  form{
+    padding: 90px 40px;
+  }
+}
+@media (max-width:414px) {
+  form{
+    padding: 90px 40px;
+  }
+}
+
+@media (max-width:280px) {
+  form{
+    padding: 90px 20px;
   }
 }
 </style>

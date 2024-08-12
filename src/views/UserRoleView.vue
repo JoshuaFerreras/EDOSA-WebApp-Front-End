@@ -1,14 +1,16 @@
 <template>
   <div class="container">
     <header>
-    <div class="logo-container"></div>
-    <RouterLink to="/" class="button"><i class="fa-solid fa-backward"></i> Go Back</RouterLink>
+      <div class="logo-container"></div>
+      <RouterLink to="/" class="button"><i class="fa-solid fa-backward"></i> Back</RouterLink>
+      <RouterLink to="/" class="icon-button"><i class="fa-solid fa-backward"></i></RouterLink>
     </header>
-      <div class="contents">
+    <div class="contents">
       <RouterLink to="/doctor-form">
         <div class="card">
           <img src="images/role-doctor.jpg" alt="Avatar">
-          <div class="role-name"><h4>I am Doctor</h4>
+          <div class="role-name">
+            <h4>I am Doctor</h4>
           </div>
         </div>
       </RouterLink>
@@ -16,7 +18,8 @@
       <RouterLink to="/patient-form">
         <div class="card">
           <img src="images/role-patient.jpg" alt="Avatar">
-          <div class="role-name"><h4>I am Patient</h4>
+          <div class="role-name">
+            <h4>I am Patient</h4>
           </div>
         </div>
       </RouterLink>
@@ -26,29 +29,31 @@
 </template>
 
 <style scoped>
-
-a:-webkit-any-link{
+a:-webkit-any-link {
   text-decoration: none;
   color: #11499C;
 }
-a:-webkit-any-link:hover{
-  color: white;
-}
 
-.container{
+/* a:-webkit-any-link:hover{
+  color: white;
+}  */
+
+.container {
   position: absolute;
   height: 100%;
   width: 100%;
   /* background: linear-gradient(45deg, whitesmoke, #11499C); */
   background: whitesmoke;
 }
-header{
+
+header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-top: 20px;
 }
-.button{
+
+.button {
   margin-right: 50px;
   border-radius: 40px;
   border: none;
@@ -63,7 +68,8 @@ header{
   text-decoration: none;
   border: 2px solid #11499C;
 }
-.button:active{
+
+.button:active {
   transform: scale(.89);
   border-radius: 40px;
   border: 2px solid white;
@@ -74,48 +80,102 @@ header{
   padding: 10px 40px;
   letter-spacing: 1px;
 }
-.logo-container{
+
+.icon-button {
+  display: none;
+  margin-right: 50px;
+  border-radius: 40px;
+  border: none;
+  background-color: white;
+  color: #11499C;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 10px 40px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  margin-top: 20px;
+  text-decoration: none;
+  border: 2px solid #11499C;
+}
+
+.icon-button:active {
+  transform: scale(.89);
+  border-radius: 40px;
+  border: 2px solid white;
+  background-color: #326ABD;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 10px 40px;
+  letter-spacing: 1px;
+}
+
+
+.logo-container {
   background: url(images/edosa-logo2.png) no-repeat center center/cover;
   background-size: contain;
   border-radius: 10px;
   width: 400px;
-	height: 160px;
+  height: 160px;
   margin-left: 50px;
   margin-right: auto;
 }
-.contents{
+
+.contents {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 50px;
 }
-img{
+
+img {
   position: relative;
   width: 100%;
   height: 100%;
 }
+
+@keyframes zoomin {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .card {
   /* Add shadows to create the "card" effect */
   /* height: 60vh;
   width: 50vw; */
+  display: flex;
+  flex-direction: column;
   position: relative;
-  box-shadow: 40px 40px 40px 0 rgba(0,0,0,0.9);
+  box-shadow: 40px 40px 40px 0 rgba(0, 0, 0, 0.9);
   transition: 0.9s;
-  margin:  40px;
-  background: linear-gradient(-90deg, whitesmoke, #326ABD);
+  margin: 40px;
+  background: radial-gradient(whitesmoke, #326ABD);
   /* background: #326ABD; */
   border-radius: 40px;
+  color: black;
   text-decoration: none;
+  animation: zoomin 0.5s ease forwards;
 }
+
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 20px 20px 0 rgba(0,0,0,0.9);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 20px 0 rgba(0, 0, 0, 0.9);
   transform: scale(.9);
-  background: #326ABD;
+  background: radial-gradient(white, white, #326ABD, #326ABD);
+  color: black;
   transition: .3s;
 }
-.card:active{
+
+.card:active {
+  display: flex;
+  flex-direction: column;
   background: linear-gradient(45deg, whitesmoke, #11499C);
   transform: scale(.8);
 }
@@ -127,7 +187,7 @@ img{
   text-decoration: none;
 }
 
-.role-name h4{
+.role-name h4 {
   font-size: 30px;
   text-transform: uppercase;
   display: flex;
@@ -141,38 +201,46 @@ img{
 /* Responsive */
 
 
-@media (max-width:1280px){
+@media (max-width:1280px) {
 
-.container{
-  height: max-content;
-}
-.card{
-  width: 90%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-}
-.contents{
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+  .container {
+    height: max-content;
+  }
+
+  .card {
+    width: 90%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+  }
 }
 
 @media (max-width: 704px) {
-  .button{
+  .button {
+    font-size: 20px;
+  }
+
+  .button:active {
     font-size: 20px;
   }
 }
 
 @media (max-width: 701px) {
-  .button{
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .button {
+    display: none;
   }
-  a{
+
+  .icon-button {
+    display: block;
+  }
+
+  a {
     display: flex;
     justify-content: center;
     align-items: center;

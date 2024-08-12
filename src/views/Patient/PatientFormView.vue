@@ -1,10 +1,105 @@
+<script setup>
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import axios from "axios";
+
+const router = useRouter();
+
+const isSignUp = ref(false);
+const errorMessage = ref("");
+
+const login_form = ref({
+  email: "",
+  password: "",
+});
+const register_form = ref({
+  email: "",
+  password: "",
+  confirm_password: "",
+});
+
+const signInBtn = () => {
+  isSignUp.value = false;
+  errorMessage.value = "";
+};
+
+const signUpBtn = () => {
+  isSignUp.value = true;
+  errorMessage.value = "";
+};
+
+const togglePassword = (inputId) => {
+  const input = document.getElementById(inputId);
+  const eyeIcon = inputId + "_eye";
+  const isPasswordInput = input.getAttribute('type') === 'password';
+
+  if (isPasswordInput) {
+    input.setAttribute('type', 'text');
+    document.getElementById(eyeIcon).classList.remove("fa-eye");
+    document.getElementById(eyeIcon).classList.add("fa-eye-slash");
+  } else {
+    input.setAttribute('type', 'password');
+    document.getElementById(eyeIcon).classList.remove("fa-eye-slash");
+    document.getElementById(eyeIcon).classList.add("fa-eye");
+  }
+};
+
+const signUpForm = async () => {
+  const email = register_form.value.email;
+  if (!validateEmail(email)) {
+    errorMessage.value = "Please enter a valid email address.";
+    return;
+  }
+
+  if (register_form.value.password !== register_form.value.confirm_password) {
+    errorMessage.value = "The password you entered isn't match.";
+    return;
+  }
+  // Clear the error message since validation was successful
+  errorMessage.value = "";
+
+  try {
+    const response = await axios.post('http://localhost:5000/signup', {
+      email: email,
+      password: register_form.value.password,
+      confirm_password: register_form.value.confirm_password
+    });
+
+    // Assuming response.data.message contains some success message
+    console.log(response.data.message);
+    isSignUp.value = false;
+  } catch (error) {
+    console.error(error.message);
+    errorMessage.value = "The account already exists.";
+  }
+};
+
+const validateEmail = (email) => {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+};
+
+
+
+const signInForm = async () => {
+  await axios.post('http://localhost:5000/signin', login_form.value).then((response) => {
+    router.push('/patient-dashboard');
+    localStorage.setItem('token', response.data.access_token);
+    localStorage.setItem('userId', response.data.user_Id);
+    response.data.message;
+  }).catch((error) => {
+    errorMessage.value = "The email or password you entered isn't connected to an account.";
+    console.error(error.message);
+  });
+};
+</script>
 <template>
   <article>
     <div class="contents">
       <div class="container" :class="{ 'sign-up-active': isSignUp }">
         <div class="overlay-container">
-          <RouterLink to="/user-role"><button class="back-btn"><i class="fa-solid fa-backward"></i> Go Back</button>
-          </RouterLink>
+          <!-- <RouterLink to="/user-role"><button class="back-btn"><i class="fa-solid fa-backward"></i> Go Back</button>
+          </RouterLink> -->
           <div class="overlay">
             <div class="overlay-left">
               <h3></h3>
@@ -21,90 +116,55 @@
             </div>
           </div>
         </div>
+        <!-- Start of Sign up -->
         <form class="sign-up" action="#" @submit.prevent="signUpForm">
           <h2>Sign Up</h2>
           <div class="input-field">
             <i class="fa-solid fa-envelope"></i>
-            <input type="text" placeholder="Email Address" v-model="register_form.email">
+            <input class="email" type="text" placeholder="Email Address" v-model="register_form.email" required>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" id="up_password" v-model="register_form.password">
-            <i class="fa fa-eye" aria-hidden="true" id="up_eye" onclick="Up_pass()"></i>
+            <input type="password" placeholder="Password" id="up_password" v-model="register_form.password" required>
+            <i class="fa fa-eye" aria-hidden="true" id="up_eye" @click="togglePassword('up_password')"></i>
           </div>
           <div class="input-field">
             <i class="fa-sharp fa-solid fa-circle-check"></i>
             <input type="password" placeholder="Confirm Password" id="Confirm_password"
-              v-model="register_form.confirm_password">
-            <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" onclick="Confirm_pass()"></i>
+              v-model="register_form.confirm_password" required>
+            <i class="fa fa-eye" aria-hidden="true" id="Confirm_eye" @click="togglePassword('Confirm_password')"></i>
           </div>
+          <div class="errormsg" v-if="errorMessage">{{ errorMessage }}</div>
           <button>Sign Up</button>
+          <RouterLink to="/user-role"><button>Cancel</button></RouterLink>
+          <h6 class="account-text">I have already an account <a @click="signInBtn">Sign In</a></h6>
         </form>
+        <!-- End of Sign up -->
+
+
+        <!-- Start of Sign in -->
         <form class="sign-in" action="#" @submit.prevent="signInForm">
           <h2>Sign In</h2>
           <div class="input-field">
             <i class="fa-solid fa-envelope"></i>
-            <input type="text" placeholder="Email Address" name="email" v-model="login_form.email">
+            <input type="text" placeholder="Email Address" name="email" v-model="login_form.email" required>
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" id="in_password" v-model="login_form.password">
-            <i class="fa fa-eye" aria-hidden="true" id="in_eye" onclick="In_pass()"></i>
+            <input type="password" placeholder="Password" id="in_password" v-model="login_form.password" required>
+            <i class="fa fa-eye" aria-hidden="true" id="in_eye" @click="togglePassword('in_password')"></i>
           </div>
           <div class="forgotpass">Forgot your password?</div>
-          <button @click="submit">Sign In</button>
-          <h6 class="account-text">Don't have any account yet? <a href="#" id="sign-up-btn2">Sign Up</a></h6>
+          <div class="errormsg" v-if="errorMessage">{{ errorMessage }}</div>
+          <button @click="signInForm">Sign In</button>
+          <RouterLink to="/user-role"><button>Cancel</button></RouterLink>
+          <h6 class="account-text">Don't have any account yet? <a @click="signUpBtn">Sign Up</a></h6>
         </form>
+        <!-- End of Sign in -->
       </div>
     </div>
   </article>
 </template>
-  
-<script setup>
-import { ref } from 'vue';
-import axios from 'axios';
-import { useRouter } from 'vue-router';
-
-const router = useRouter();
-
-const isSignUp = ref(false);
-const login_form = ref({
-  email: "",
-  password: "",
-});
-const register_form = ref({
-  email: "",
-  password: "",
-  confirm_password: "",
-  role_id: 2
-});
-
-const signInBtn = () => {
-  isSignUp.value = false;
-};
-
-const signUpBtn = () => {
-  isSignUp.value = true;
-};
-
-const signUpForm = async () => {
-  await axios.post('/users', register_form.value).then(() => {
-    isSignUp.value = false;
-    register_form.value.email = "";
-    register_form.value.password = "";
-    register_form.value.confirm_password = "";
-  });
-}
-
-const signInForm = async () => {
-  await axios.post('/login', login_form.value).then((response) => {
-    router.push('/patient-dashboard');
-    localStorage.setItem('token', response.data.data.token);
-    console.log(response.data.data.token);
-  })
-
-}
-</script>
   
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
@@ -114,6 +174,9 @@ const signInForm = async () => {
   box-sizing: content-box;
 }
 
+a [data-v-a1545dbe] {
+  margin: 0px 0px;
+}
 
 label {
   font-size: 18px;
@@ -137,7 +200,7 @@ label {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 40px 40px 40px black;
-  background: linear-gradient(-45deg, whitesmoke, #11499C);
+  background: radial-gradient(whitesmoke, #11499C);
 
 
 
@@ -152,23 +215,13 @@ label {
     z-index: 100;
   }
 
-  .back-btn {
-    color: #11499C;
-    background-color: whitesmoke;
-    padding: 10px 10px;
-    margin-left: auto;
-    margin-right: 10px;
-    display: flex;
-    font-size: 12px;
-    border: none;
-  }
 
   .overlay {
     position: relative;
     left: -100%;
     height: 100%;
     width: 200%;
-    background: linear-gradient(-45deg, whitesmoke, #11499C);
+    background: radial-gradient(whitesmoke, #11499C);
     color: #fff;
     transform: translateX(0);
     transition: transform .5s ease-in-out;
@@ -297,7 +350,6 @@ form {
   width: calc(50% - 120px);
   height: calc(100% - 180px);
   text-align: center;
-  // background: linear-gradient(to bottom,#efefef, #ccc);
   background: whitesmoke;
   transition: all .5s ease-in-out;
 
@@ -315,6 +367,11 @@ form {
     display: flex;
     align-items: center;
     color: red;
+  }
+
+  .error {
+    border-color: red;
+    /* Change the border color to red for error state */
   }
 
   .input-field i {
@@ -409,6 +466,15 @@ form {
   }
 }
 
+.errormsg {
+  color: red;
+}
+
+
+.fa-eye {
+  background: none;
+}
+
 /* Responsive UI */
 
 @media (max-width:900px) {
@@ -419,7 +485,17 @@ form {
   }
 }
 
-@media(max-width:635px) {
+@media (max-width: 635px) {
+
+  .sign-up-active .sign-up {
+    width: 82%;
+    transform: none;
+  }
+
+  form .account-text {
+    display: block;
+  }
+
   .overlay-container {
     display: none;
   }
@@ -431,10 +507,17 @@ form {
   .sign-in {
     width: 82%;
   }
+}
 
-  .account-text {
-    display: inline-block;
-    margin-top: 30px;
+@media (max-width:375px) {
+  form {
+    padding: 90px 40px;
+  }
+}
+
+@media (max-width:414px) {
+  form {
+    padding: 90px 40px;
   }
 }
 </style>

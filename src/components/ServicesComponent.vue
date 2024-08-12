@@ -16,22 +16,39 @@
                 <i class="fas fa-times close-btn"></i>
             </label>
         </header>
-        <div class="content">
-            <div class="home">
-                <h2>
-                    Dedicated Healthcare Platform for Obstructive Sleep Apnea
-                </h2>
-                <p>
-                    EDOSA platform helps the patients with sleep
-                    apnea(diagnosed or undiagnosed) to better
-                    communicate with sleep doctors.
-                </p>
-                <h3>
-                    Let’s make Sleep Apnea sufferers Feel Better!
-                </h3>
-                <RouterLink to="/user-role" class="getstarted-btn">Get Started</RouterLink>
-                <RouterLink to="/user-role" class="icon-button"><i class="fa-solid fa-circle-right"></i></RouterLink>
+        <div class="service-content">
+            <h1>company services</h1>
+            <div class="container">
+                <h2>"Sleep soundly with our innovative technology</h2>
+                <p>Discover an innovative solution for
+                    detecting obstructive sleep apnea
+                    early on. Our early detection system
+                    offers unparalleled accuracy and
+                    reliability, providing you with the
+                    peace of mind you need to sleep
+                    soundly at night. Say goodbye to
+                    restless nights and hello to a
+                    healthier, happier you with our
+                    cutting-edge technology. Try our
+                    early detection system for
+                    obstructive sleep apnea today!</p>
+
+                <p>The machine learning model analyzes
+                    sleep data's features to classify the
+                    severity of Obstructive Sleep Apnea
+                    (OSA) into one of four categories:
+                    Normal, Mild, Moderate, or Severe. It
+                    includes metrics like apnea events
+                    per hour, oxygen saturation levels,
+                    and other sleep-related
+                    measurements. This analysis helps
+                    determine the severity of OSA and
+                    suggests suitable treatment.</p>
+                    
             </div>
+            <footer>
+                <img src="images/company-logo.png" alt="Avatar" class="card-img">
+            </footer>
         </div>
     </section>
 </template>
@@ -39,15 +56,15 @@
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;1,100;1,200;1,300&display=swap');
 
+
+
+/* LANDING PAGE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
-
-
-/* LANDING PAGE */
 
 section {
     position: absolute;
@@ -101,82 +118,6 @@ header .navigation a:hover {
     border: 2px solid #114A9C;
 }
 
-@keyframes slideRight {
-    0% {
-        opacity: 0;
-        transform: translateX(-100%);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.content {
-    max-width: 650px;
-    margin: 60px 100px;
-    animation: slideRight 0.5s ease-in-out;
-}
-
-.content .home h2,
-.content .home p,
-.content .home h3,
-.content .getstarted-btn {
-    animation: slideRight 0.5s ease-in-out;
-}
-
-
-.content .home h2 {
-    color: #296FD7;
-    font-size: 55px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 2;
-    line-height: 60px;
-    margin-bottom: 30px;
-}
-
-.content .home p {
-    font-size: 16px;
-    font-weight: 500px;
-    margin-bottom: 40px;
-}
-
-.content .home h3 {
-    font-size: 30px;
-    font-weight: 500px;
-    margin-bottom: 40px;
-}
-
-.content .getstarted-btn {
-    color: white;
-    background: #114A9C;
-    text-decoration: none;
-    border: none;
-    text-transform: uppercase;
-    font-weight: 700;
-    letter-spacing: 2px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    transition: .3s;
-    transition-property: transform;
-
-}
-
-.content .getstarted-btn:active {
-    background: white;
-    color: #114A9C;
-    transform: scale(1.2);
-    border: 2px solid #114A9C;
-
-}
-
-.icon-button {
-    display: none;
-    color: #114A9C;
-    font-size: 50px;
-}
-
 label {
     display: none;
 }
@@ -185,6 +126,77 @@ label {
     z-index: 3;
     display: none;
 }
+
+.card-img {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    width: 25%; /* Adjust width as needed */
+}
+
+h1 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    text-transform: uppercase;
+    font-size: 70px;
+    color: #296FD7;
+}
+
+@keyframes slideinright {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.container {
+    margin: 100px 0px 0px 0px;
+    margin-top: 0px;
+    padding: 20px;
+    animation: slideinright 1s forwards;
+    /* Adjust the animation duration and timing function as needed */
+}
+
+
+
+h2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+p {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 35px;
+  font-weight: bold;
+  animation: fadeIn 1.5s ease; /* Adjust duration and timing function as needed */
+}
+
+
 
 /* Responsive Style */
 @media (max-width: 1040px) {
@@ -246,52 +258,5 @@ label {
         position: absolute;
     }
 
-    .content .home h2 {
-        font-size: 45px;
-        line-height: 50px;
-    }
-
-    .content .home p {
-        font-size: 14px;
-    }
-
-    .content .home h3 {
-        font-size: 40px;
-        font-weight: 600;
-    }
-}
-
-
-@media (max-width: 560px) {
-    .content .home h2 {
-        font-size: 35px;
-        line-height: 40px;
-    }
-
-    .content .home p {
-        font-size: 14px;
-    }
-
-    .content .home h3 {
-        font-size: 30px;
-        font-weight: 600;
-    }
-
-    @media (max-width: 422px) {
-        .getstarted-btn {
-            position: relative;
-            font-size: medium;
-        }
-    }
-
-    @media (max-width: 362px) {
-        .getstarted-btn {
-            display: none;
-        }
-
-        .icon-button {
-            display: block;
-        }
-    }
 }
 </style> 
